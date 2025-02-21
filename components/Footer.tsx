@@ -4,6 +4,7 @@ import type React from "react"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/LanguageContext"
 import { translations, type TranslationKey } from "@/utils/translations"
+import { Clock } from 'lucide-react'
 
 const Footer: React.FC = () => {
   const { language } = useLanguage()
@@ -18,7 +19,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-600/80 text-white py-6">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Company Info */}
           <div>
             <h3 className="text-lg font-semibold mb-2">{t("companyName")}</h3>
@@ -44,6 +45,16 @@ const Footer: React.FC = () => {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Opening Hours */}
+          <div>
+            <h3 className="text-lg font-semibold mb-2 flex items-center">
+              <Clock className="mr-2" size={20} />
+              {t("openingHours")}
+            </h3>
+            <p className="text-sm">{t("workingHoursWeekdays")}</p>
+            <p className="text-sm">{t("workingHoursSaturdaySunday")}</p>
           </div>
         </div>
 

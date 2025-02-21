@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useLanguage } from "@/contexts/LanguageContext"
@@ -11,6 +11,11 @@ import { Menu, X } from 'lucide-react'
 const Header: React.FC = () => {
   const { language, setLanguage } = useLanguage()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const t = (key: TranslationKey) => translations[language][key]
 
@@ -24,6 +29,10 @@ const Header: React.FC = () => {
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "ar" : "en")
+  }
+
+  if (!isMounted) {
+    return null // or a loading placeholder
   }
 
   return (

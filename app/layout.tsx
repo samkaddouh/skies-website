@@ -1,16 +1,16 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Roboto_Flex } from "next/font/google"
+import { Roboto_Flex } from 'next/font/google'
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { LanguageProvider } from "@/contexts/LanguageContext"
+import ClientWrapper from '../components/ClientWrapper'
 
 const robotoFlex = Roboto_Flex({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-roboto-flex",
-  // You can specify the weights you need
   weight: "300"
 })
 
@@ -27,13 +27,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={robotoFlex.variable}>
       <body className={`${robotoFlex.className} antialiased`}>
-        <LanguageProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </LanguageProvider>
+        <ClientWrapper>
+          <LanguageProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </LanguageProvider>
+        </ClientWrapper>
       </body>
     </html>
   )
 }
-

@@ -106,6 +106,9 @@ export const translations = {
       clientTestimonials: "Client Testimonials",
       testimonial1: "Skies Shipping & Clearing made our international shipments smooth and hassle-free!",
       testimonial2: "Their customs expertise saved us time and money. Highly recommend!",
+      openingHours: "Opening Hours",
+      workingHoursWeekdays: "Mon - Fri: 07:00 - 17:00",
+      workingHoursSaturdaySunday: "Sat - Sun: Closed",
     },
     ar: {
       home: "الرئيسية",
@@ -213,6 +216,9 @@ export const translations = {
       clientTestimonials: "آراء العملاء",
       testimonial1: "جعلت سكايز للشحن والتخليص شحناتنا الدولية سلسة وخالية من المتاعب!",
       testimonial2: "وفرت خبرتهم الجمركية علينا الوقت والمال. نوصي بهم بشدة!",
+      openingHours: "ساعات العمل",
+      workingHoursWeekdays: "الاثنين - الجمعة: ٠٧:٠٠ - ١٧:٠٠",
+      workingHoursSaturdaySunday: "السبت - الأحد: مغلق",
     },
   }
   
