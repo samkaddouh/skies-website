@@ -3,19 +3,36 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary-color: #828282;
+  --icon-color: #0479c2;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f0f0f0;
+}
+
+@keyframes subtleJump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-subtle-jump {
+  animation: subtleJump 2s ease-in-out infinite;
+}
+
+/* Style for Lucide icons */
+.text-center svg {
+  color: var(--icon-color);
+  stroke: var(--icon-color);
+}
+
+/* Additional style for Solutions section icons */
+.solutions-card svg {
+  color: var(--icon-color);
+  stroke: var(--icon-color);
 }
