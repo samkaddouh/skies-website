@@ -1,7 +1,6 @@
 "use client"
 
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useLanguage } from "@/contexts/LanguageContext"
 import { translations, type TranslationKey } from "@/utils/translations"
@@ -23,62 +22,32 @@ const AboutPage: React.FC = () => {
   const t = (key: TranslationKey) => translations[language][key]
 
   const features = [
-    { icon: Award, text: "yearsExperience" as TranslationKey },
-    { icon: Users, text: "trustedPartnerships" as TranslationKey },
-    { icon: CheckCircle, text: "customsExpertise" as TranslationKey },
-    { icon: Globe, text: "globalReach" as TranslationKey },
-    { icon: PhoneCall, text: "support" as TranslationKey },
+    { icon: Award, text: "yearsExperience" },
+    { icon: Users, text: "trustedPartnerships" },
+    { icon: CheckCircle, text: "customsExpertise" },
+    { icon: Globe, text: "globalReach" },
+    { icon: PhoneCall, text: "support" },
   ]
 
   const teamMembers: TeamMember[] = [
-    {
-      name: "Hassan Beydoun",
-      role: "ceoRole",
-      experience: "ceoExperience"
-    },
-    {
-      name: "Ali Beydoun",
-      role: "customsRole",
-      experience: "customsExperience"
-    }
+    { name: "Hassan Beydoun", role: "ceoRole", experience: "ceoExperience" },
+    { name: "Ali Beydoun", role: "customsRole", experience: "customsExperience" },
   ]
 
   const testimonials: Testimonial[] = [
-    {
-      text: "testimonial1",
-      client: "Mohammad K."
-    },
-    {
-      text: "testimonial2",
-      client: "Ahmad R."
-    }
+    { text: "testimonial1", client: "Mohammad K." },
+    { text: "testimonial2", client: "Ahmad R." },
   ]
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center text-white">
-        <Image
-          src="/test.jpg"
-          alt="Logistics Hub"
-          fill
-          className="absolute object-cover z-0"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
-        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{t("aboutHeroTitle")}</h1>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">{t("aboutHeroSubtitle")}</p>
-          <Link 
-            href="/quote" 
-            className="bg-primary-color text-white px-6 py-3 rounded-lg font-bold text-lg hover:bg-primary-color/80 transition-colors"
-          >
-            {t("getQuote")}
-          </Link>
+      <section className="bg-[#828282] text-white py-6 md:py-8">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3 animate-subtle-jump">{t("aboutHeroTitle")}</h1>
+          <p className="text-lg md:text-xl mb-4">{t("aboutHeroSubtitle")}</p>
         </div>
       </section>
 
-      {/* Mission & Vision */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid md:grid-cols-2 gap-12">
@@ -94,7 +63,6 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl font-bold mb-12 text-center">{t("whyChooseUs")}</h2>
@@ -102,14 +70,13 @@ const AboutPage: React.FC = () => {
             {features.map((feature, index) => (
               <div key={index} className="flex items-start p-6 bg-gray-50 rounded-lg">
                 <feature.icon className="w-8 h-8 text-primary-color flex-shrink-0 mr-4" />
-                <p className="text-gray-700">{t(feature.text)}</p>
+                <p className="text-gray-700">{t(feature.text as TranslationKey)}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Meet the Team */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-3xl font-bold mb-12 text-center">{t("meetTheTeam")}</h2>
@@ -125,7 +92,6 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Client Testimonials */}
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <h2 className="text-3xl font-bold mb-12 text-center">{t("clientTestimonials")}</h2>

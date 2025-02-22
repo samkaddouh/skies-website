@@ -73,8 +73,6 @@ export default function QuoteForm({ formType }: QuoteFormProps) {
 
     return (
         <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-            <h2 className="text-3xl font-bold mb-6">{t("getQuoteTitle")}</h2>
-            <p className="mb-4">{t("getQuoteDescription")}</p>
             {error && <p className="text-red-500 mb-4">{error}</p>}
             {success && <p className="text-green-500 mb-4">{t("quoteRequestSent")}</p>}
             <form onSubmit={handleSubmit} className="space-y-4">
