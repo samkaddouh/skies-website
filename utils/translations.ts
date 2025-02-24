@@ -136,8 +136,8 @@ export const translations = {
         "submitting": "Submitting...",
         "submit": "Submit Quote Request",
         errorMessage: "An unexpected error occurred. Please try again later.",
-        isHazardous: "Is this a hazardous cargo?",
-        isPerishable: "Is this a perishable cargo?",
+        isHazardousCargo: "Hazardous Cargo?",
+        isPerishableCargo: "Perishable Cargo?",
         deliveryUrgency: "Delivery Urgency",
         standardDelivery: "Standard Delivery",
         expressDelivery: "Express Delivery",
@@ -176,7 +176,8 @@ export const translations = {
         workContactNumber: "Work Contact Number",
         yes: "Yes",
         no: "No",
-
+        numberOfCartons: "Number of Cartons",
+        numberOfPallets: "Number of Pallets",
     },
     ar: {
         home: "الرئيسية",
@@ -313,8 +314,8 @@ export const translations = {
         "submitting": "جاري الإرسال...",
         "submit": "إرسال طلب عرض السعر",
         errorMessage: "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى لاحقاً.",
-        isHazardous: "هل هذه بضائع خطرة؟",
-        isPerishable: "هل هذه بضائع قابلة للتلف؟",
+        isHazardousCargo: "هل هذه بضائع خطرة؟",
+        isPerishableCargo: "هل هذه بضائع قابلة للتلف؟",
         deliveryUrgency: "عاجلية التسليم",
         standardDelivery: "تسليم قياسي",
         expressDelivery: "تسليم سريع",
@@ -352,6 +353,8 @@ export const translations = {
         workContactNumber: "رقم الاتصال بالعمل",
         yes: "نعم",
         no: "لا",
+        numberOfCartons: "عدد الكراتين",
+        numberOfPallets: "عدد المنصات",
 
     },
 }

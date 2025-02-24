@@ -13,6 +13,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { CheckCircle, AlertCircle, Plane, Ship, ArrowLeft, ArrowRight, Truck } from "lucide-react"
 import type { BaseQuoteFormData } from "./schema"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Checkbox } from "@/components/ui/checkbox"
 
 type ServiceType = "air" | "sea" | "land" | null
 
@@ -51,6 +53,8 @@ interface FormState {
     // Land freight specific fields
     requiresLoadingAssistance: boolean
     requiresUnloadingAssistance: boolean
+    numberOfCartons: string
+    numberOfPallets: string
   }
 }
 
@@ -88,6 +92,8 @@ const initialFormState: FormState = {
     companyAddress: "",
     requiresLoadingAssistance: false,
     requiresUnloadingAssistance: false,
+    numberOfCartons: "",
+    numberOfPallets: "",
   },
 }
 
@@ -169,6 +175,8 @@ export default function QuotePage() {
           companyAddress: "",
           requiresLoadingAssistance: false,
           requiresUnloadingAssistance: false,
+          numberOfCartons: "",
+          numberOfPallets: "",
         },
       }))
       form.reset()
@@ -222,7 +230,100 @@ export default function QuotePage() {
           </CardContent>
         </Card>
       </div>
-      {formState.serviceType && (
+      {formState.serviceType === "air" && (
+        <>
+          <Card className="mb-4">
+            <CardContent className="p-6">
+              <h3 className="text-xl font-semibold mb-4">{t("cargoDetails")}</h3>
+              <div className="grid gap-4">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="weight">{t("weight")}</Label>
+                    <Input
+                      id="weight"
+                      name="weight"
+                      value={formState.data.weight}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="dimensions">{t("dimensions")}</Label>
+                    <Input
+                      id="dimensions"
+                      name="dimensions"
+                      value={formState.data.dimensions}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="numberOfCartons">{t("numberOfCartons")}</Label>
+                    <Input
+                      id="numberOfCartons"
+                      name="numberOfCartons"
+                      type="number"
+                      value={formState.data.numberOfCartons}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="numberOfPallets">{t("numberOfPallets")}</Label>
+                    <Input
+                      id="numberOfPallets"
+                      name="numberOfPallets"
+                      type="number"
+                      value={formState.data.numberOfPallets}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="originAddress">{t("originAddress")}</Label>
+                    <Input
+                      id="originAddress"
+                      name="originAddress"
+                      value={formState.data.originAddress}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="destinationAddress">{t("destinationAddress")}</Label>
+                    <Input
+                      id="destinationAddress"
+                      name="destinationAddress"
+                      value={formState.data.destinationAddress}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-6">
+              <h3 className="text-xl font-semibold mb-4">{t("additionalServices")}</h3>
+              {renderServiceSpecificFields()}
+            </CardContent>
+          </Card>
+        </>
+      )}
+      {formState.serviceType === "sea" && (
+        <Card>
+          <CardContent className="p-6">
+            <h3 className="text-xl font-semibold mb-4">{t("additionalServices")}</h3>
+            {renderServiceSpecificFields()}
+          </CardContent>
+        </Card>
+      )}
+      {formState.serviceType && formState.serviceType !== "air" && formState.serviceType !== "sea" && (
         <Card>
           <CardContent className="p-6">
             <h3 className="text-xl font-semibold mb-4">{t("additionalServices")}</h3>
@@ -395,58 +496,33 @@ export default function QuotePage() {
       case "air":
         return (
           <div className="space-y-6">
-            <div className="space-y-3">
-              <h3 className={`text-base font-medium ${language === "ar" ? "text-right" : ""}`}>{t("isHazardous")}</h3>
-              <RadioGroup
-                value={formState.data.isHazardous ? "yes" : "no"}
-                onValueChange={(value) =>
+            {/* Replace the hazardous cargo radio group with: */}
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="isHazardous"
+                checked={formState.data.isHazardous || false}
+                onCheckedChange={(checked) =>
                   setFormState((prev) => ({
                     ...prev,
-                    data: { ...prev.data, isHazardous: value === "yes" },
+                    data: { ...prev.data, isHazardous: checked === true },
                   }))
                 }
-                className={`flex gap-4 ${language === "ar" ? "justify-end" : ""}`}
-              >
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="yes" id="hazardous-yes" />
-                  <Label htmlFor="hazardous-yes">{t("yes")}</Label>
-                </div>
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="no" id="hazardous-no" />
-                  <Label htmlFor="hazardous-no">{t("no")}</Label>
-                </div>
-              </RadioGroup>
+              />
+              <Label htmlFor="isHazardous">{t("isHazardousCargo")}</Label>
             </div>
 
-            <div className="space-y-3">
-              <h3 className={`text-base font-medium ${language === "ar" ? "text-right" : ""}`}>{t("isPerishable")}</h3>
-              <RadioGroup
-                value={formState.data.isPerishable ? "yes" : "no"}
-                onValueChange={(value) =>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="isPerishable"
+                checked={formState.data.isPerishable || false}
+                onCheckedChange={(checked) =>
                   setFormState((prev) => ({
                     ...prev,
-                    data: { ...prev.data, isPerishable: value === "yes" },
+                    data: { ...prev.data, isPerishable: checked === true },
                   }))
                 }
-                className={`flex gap-4 ${language === "ar" ? "justify-end" : ""}`}
-              >
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="yes" id="perishable-yes" />
-                  <Label htmlFor="perishable-yes">{t("yes")}</Label>
-                </div>
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="no" id="perishable-no" />
-                  <Label htmlFor="perishable-no">{t("no")}</Label>
-                </div>
-              </RadioGroup>
+              />
+              <Label htmlFor="isPerishable">{t("isPerishableCargo")}</Label>
             </div>
 
             <div className="space-y-3">
@@ -492,7 +568,7 @@ export default function QuotePage() {
               <Label className={`text-base font-medium ${language === "ar" ? "text-right" : ""}`}>
                 {t("equipmentNeeded")}
               </Label>
-              <RadioGroup
+              <Select
                 value={formState.data.equipmentNeeded}
                 onValueChange={(value) =>
                   setFormState((prev) => ({
@@ -503,79 +579,122 @@ export default function QuotePage() {
                     },
                   }))
                 }
-                className={`flex gap-4 ${language === "ar" ? "justify-end" : ""}`}
               >
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="LCL" id="LCL" />
-                  <Label htmlFor="LCL">LCL</Label>
-                </div>
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="20ft" id="20ft" />
-                  <Label htmlFor="20ft">20ft</Label>
-                </div>
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="40ft" id="40ft" />
-                  <Label htmlFor="40ft">40ft</Label>
-                </div>
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="40HC" id="40HC" />
-                  <Label htmlFor="40HC">40HC</Label>
-                </div>
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="40REEF" id="40REEF" />
-                  <Label htmlFor="40REEF">40REEF</Label>
-                </div>
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="20OT" id="20OT" />
-                  <Label htmlFor="20OT">20OT</Label>
-                </div>
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="40OT" id="40OT" />
-                  <Label htmlFor="40OT">40OT</Label>
-                </div>
-              </RadioGroup>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select equipment type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="LCL">LCL</SelectItem>
+                  <SelectItem value="20ft">20ft</SelectItem>
+                  <SelectItem value="40ft">40ft</SelectItem>
+                  <SelectItem value="40HC">40HC</SelectItem>
+                  <SelectItem value="40REEF">40REEF</SelectItem>
+                  <SelectItem value="20OT">20OT</SelectItem>
+                  <SelectItem value="40OT">40OT</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
-            <div className="space-y-3">
-              <h3 className={`text-base font-medium ${language === "ar" ? "text-right" : ""}`}>{t("isHazardous")}</h3>
-              <RadioGroup
-                value={formState.data.isHazardous ? "yes" : "no"}
-                onValueChange={(value) =>
-                  setFormState((prev) => ({
-                    ...prev,
-                    data: { ...prev.data, isHazardous: value === "yes" },
-                  }))
-                }
-                className={`flex gap-4 ${language === "ar" ? "justify-end" : ""}`}
-              >
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="yes" id="hazardous-yes-sea" />
-                  <Label htmlFor="hazardous-yes-sea">{t("yes")}</Label>
+            {formState.data.equipmentNeeded === "LCL" && (
+              <div className="space-y-6 mt-6">
+                <h3 className="text-xl font-semibold mb-6">{t("cargoDetails")}</h3>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="weight">{t("weight")}</Label>
+                      <Input
+                        id="weight"
+                        name="weight"
+                        value={formState.data.weight}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="dimensions">{t("dimensions")}</Label>
+                      <Input
+                        id="dimensions"
+                        name="dimensions"
+                        placeholder="L x W x H"
+                        value={formState.data.dimensions}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="numberOfCartons">{t("numberOfCartons")}</Label>
+                      <Input
+                        id="numberOfCartons"
+                        name="numberOfCartons"
+                        type="number"
+                        value={formState.data.numberOfCartons}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="numberOfPallets">{t("numberOfPallets")}</Label>
+                      <Input
+                        id="numberOfPallets"
+                        name="numberOfPallets"
+                        type="number"
+                        value={formState.data.numberOfPallets}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="originAddress">{t("originAddress")}</Label>
+                    <Input
+                      id="originAddress"
+                      name="originAddress"
+                      value={formState.data.originAddress}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="destinationAddress">{t("destinationAddress")}</Label>
+                    <Input
+                      id="destinationAddress"
+                      name="destinationAddress"
+                      value={formState.data.destinationAddress}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
                 </div>
-                <div
-                  className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
-                >
-                  <RadioGroupItem value="no" id="hazardous-no-sea" />
-                  <Label htmlFor="hazardous-no-sea">{t("no")}</Label>
+                <div className="space-y-3">
+                  <h3 className="text-base font-medium">{t("isHazardousCargo")}</h3>
+                  <RadioGroup
+                    value={formState.data.isHazardous ? "yes" : "no"}
+                    onValueChange={(value) =>
+                      setFormState((prev) => ({
+                        ...prev,
+                        data: { ...prev.data, isHazardous: value === "yes" },
+                      }))
+                    }
+                    className={`flex gap-4 ${language === "ar" ? "justify-end" : ""}`}
+                  >
+                    <div
+                      className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
+                    >
+                      <RadioGroupItem value="yes" id="hazardous-yes-sea" />
+                      <Label htmlFor="hazardous-yes-sea">{t("yes")}</Label>
+                    </div>
+                    <div
+                      className={`flex items-center ${language === "ar" ? "flex-row-reverse space-x-reverse" : "space-x-2"}`}
+                    >
+                      <RadioGroupItem value="no" id="hazardous-no-sea" />
+                      <Label htmlFor="hazardous-no-sea">{t("no")}</Label>
+                    </div>
+                  </RadioGroup>
                 </div>
-              </RadioGroup>
-            </div>
+              </div>
+            )}
           </div>
         )
       case "land":
@@ -640,7 +759,9 @@ export default function QuotePage() {
             </div>
 
             <div className="space-y-3">
-              <h3 className={`text-base font-medium ${language === "ar" ? "text-right" : ""}`}>{t("isHazardous")}</h3>
+              <h3 className={`text-base font-medium ${language === "ar" ? "text-right" : ""}`}>
+                {t("isHazardousCargo")}
+              </h3>
               <RadioGroup
                 value={formState.data.isHazardous ? "yes" : "no"}
                 onValueChange={(value) =>
@@ -682,7 +803,7 @@ export default function QuotePage() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <section className="bg-[#1B2A41] text-white py-6 md:py-8">
+      <section className="bg-[#828282] text-white py-6 md:py-8">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-3 animate-subtle-jump">{t("getQuoteTitle")}</h1>
           <p className="text-lg md:text-xl mb-4">{t("getQuoteDescription")}</p>

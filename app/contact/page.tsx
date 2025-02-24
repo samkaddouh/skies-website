@@ -230,7 +230,7 @@ export default function ContactPage() {
 
   return (
     <div className="bg-white min-h-[calc(100vh-64px)]">
-      <section className="bg-[#1B2A41] text-white py-6 md:py-8">
+      <section className="bg-[#828282] text-white py-6 md:py-8">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-3 animate-subtle-jump">{t("contactUs")}</h1>
           <p className="text-lg md:text-xl mb-4">{t("contactDescription")}</p>
