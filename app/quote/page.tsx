@@ -72,7 +72,7 @@ const initialFormState: FormState = {
   isSubmitting: false,
   serviceType: null,
   currentStep: 1,
-  maxSteps: 2,
+  maxSteps: 3,
   data: {
     name: "",
     email: "",
@@ -503,10 +503,18 @@ export default function QuotePage() {
             t={t}
             renderServiceSpecificFields={renderServiceSpecificFields}
             onPrevious={prevStep}
-            onNext={handleSubmit}
+            onNext={() => nextStep()} // Change this to a simple function with no parameters
             onReset={handleResetStep2}
             language={language}
           />
+        )
+      case 3:
+        return (
+          <div className="flex justify-center">
+            <Button type="submit" disabled={formState.isSubmitting}>
+              {formState.isSubmitting ? t("submitting") : t("submitQuote")}
+            </Button>
+          </div>
         )
       default:
         return null
