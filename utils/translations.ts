@@ -35,7 +35,6 @@ export const translations = {
         destinationAddress: "Destination Address",
         serviceType: "Types of Services",
         selectService: "Select a service",
-        descriptionOfGoods: "Description of Goods",
         value: "Value",
         weight: "Weight",
         dimensions: "Dimensions (L x W x H)",
@@ -218,6 +217,11 @@ export const translations = {
         destinationAddressPlaceholder: "e.g. 456 Business Ave, London, UK",
         resetForm: "Reset",
 
+        additionalInfoPlaceholder: "Enter any additional information",
+        descriptionOfGoods: "Description of Goods",
+        descriptionOfGoodsPlaceholder: "Describe the goods you're shipping",
+        submitQuote: "Submit Quote"
+
     },
     ar: {
         home: "الرئيسية",
@@ -254,11 +258,9 @@ export const translations = {
         destinationAddress: "عنوان الوجهة",
         serviceType: "أنواع الخدمات",
         selectService: "اختر خدمة",
-        descriptionOfGoods: "وصف البضائع",
         value: "القيمة",
         weight: "الوزن",
         dimensions: "الأبعاد (الطول × العرض × الارتفاع)",
-        additionalInfo: "معلومات إضافية",
         sendMessage: "إرسال الرسالة",
         contactUs: "اتصل بنا",
         sendUsMessage: "أرسل لنا رسالة",
@@ -434,6 +436,11 @@ export const translations = {
         originAddressPlaceholder: "مثال: 123 شارع الرئيسي، دبي، الإمارات",
         destinationAddressPlaceholder: "مثال: 456 شارع الأعمال، لندن، المملكة المتحدة",
         resetForm: "إعادة تعيين النموذج",
+        additionalInfo: "معلومات إضافية",
+        additionalInfoPlaceholder: "أدخل أي معلومات إضافية",
+        descriptionOfGoods: "وصف البضائع",
+        descriptionOfGoodsPlaceholder: "صف البضائع التي تقوم بشحنها",
+        submitQuote: "إرسال الاقتباس"
     },
 }
 

@@ -60,6 +60,8 @@ interface FormState {
     cargoType?: CargoType
     weightValue?: string
     weightUnit?: "kg" | "lb" | "ton"
+    descriptionOfGoods?: string
+    additionalInfo?: string
   }
 }
 
@@ -70,7 +72,7 @@ const initialFormState: FormState = {
   isSubmitting: false,
   serviceType: null,
   currentStep: 1,
-  maxSteps: 4,
+  maxSteps: 2,
   data: {
     name: "",
     email: "",
@@ -106,6 +108,7 @@ const initialFormState: FormState = {
     cargoType: undefined,
     weightValue: "",
     weightUnit: "kg",
+    descriptionOfGoods: "",
   },
 }
 
@@ -115,7 +118,7 @@ export default function QuotePage() {
 
   const [formState, setFormState] = useState<FormState>(initialFormState)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setFormState((prev) => ({
       ...prev,
@@ -129,7 +132,7 @@ export default function QuotePage() {
       serviceType: type,
       data: {
         ...prev.data,
-        serviceType: type || "air",
+        serviceType: type || null,
       },
     }))
   }
@@ -188,7 +191,7 @@ export default function QuotePage() {
         isSubmitting: false,
         serviceType: null,
         currentStep: 1,
-        maxSteps: 4,
+        maxSteps: 2,
         data: initialFormState.data,
       }))
       form.reset()
@@ -229,10 +232,8 @@ export default function QuotePage() {
                         | "40REEF"
                         | "20OT"
                         | "40OT",
-                      // Clear temperature when changing equipment type
                       temperature: value === "40REEF" || value === "20REEF" ? prev.data.temperature : "",
                       temperatureUnit: value === "40REEF" || value === "20REEF" ? prev.data.temperatureUnit : undefined,
-                      // Reset cargo gauge related fields when changing equipment
                       cargoGaugeType: value === "20OT" || value === "40OT" ? "in" : undefined,
                       containerCapacity: value === "20OT" || value === "40OT" ? 0 : undefined,
                       cargoDimensions: value === "20OT" || value === "40OT" ? "" : prev.data.cargoDimensions,
@@ -292,7 +293,6 @@ export default function QuotePage() {
                         data: {
                           ...prev.data,
                           cargoGaugeType: value,
-                          // Reset related fields when switching gauge type
                           containerCapacity: value === "in" ? 0 : prev.data.containerCapacity,
                           cargoDimensions: value === "in" ? "" : prev.data.cargoDimensions,
                         },
@@ -468,27 +468,14 @@ export default function QuotePage() {
     setFormState((prev) => ({
       ...prev,
       data: {
-        ...prev.data,
-        shippingTerm: undefined,
-        serviceType: null,
-        exactPickupAddress: "",
-        cargoType: undefined,
-        equipmentNeeded: undefined,
-        temperature: "",
-        temperatureUnit: undefined,
-        cargoGaugeType: "in",
-        containerCapacity: 0,
-        cargoDimensions: "",
-        dimensionsUnit: "m",
-        weightValue: "",
-        weightUnit: "kg",
-        deliveryUrgency: undefined,
-        requiresLoadingAssistance: false,
-        requiresUnloadingAssistance: false,
-        packages: "",
-        originAddress: "",
-        destinationAddress: "",
+        ...initialFormState.data,
+        name: prev.data.name,
+        email: prev.data.email,
+        phone: prev.data.phone,
+        companyNameSupplier: prev.data.companyNameSupplier,
+        contactPerson: prev.data.contactPerson,
       },
+      serviceType: null,
     }))
   }
 
@@ -516,12 +503,11 @@ export default function QuotePage() {
             t={t}
             renderServiceSpecificFields={renderServiceSpecificFields}
             onPrevious={prevStep}
-            onNext={nextStep}
+            onNext={handleSubmit}
             onReset={handleResetStep2}
             language={language}
           />
         )
-
       default:
         return null
     }

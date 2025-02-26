@@ -7,6 +7,7 @@ import type { TranslationKey } from "@/utils/translations"
 import type { ShippingTerm } from "./ShippingTermsSelector"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
 
 type ServiceType = "air" | "sea" | "land" | null
 type CargoType = "general" | "hazardous"
@@ -18,6 +19,8 @@ interface StepTwoProps {
     exactPickupAddress?: string
     cargoType?: CargoType
     packages?: string
+    descriptionOfGoods?: string
+    additionalInfo?: string
   }
   onServiceTypeSelect: (type: ServiceType) => void
   onShippingTermChange: (term: ShippingTerm) => void
@@ -66,7 +69,7 @@ export function StepTwo({
                 value={data.exactPickupAddress || ""}
                 onChange={handleInputChange}
                 placeholder={t("destinationAddressPlaceholder")}
-                className="w-full px-3 py-2 border rounded-md border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="w-full px-3 py-2 border rounded-md border-input bg-background text-sm ring-offset-background placeholder:italic placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 required
               />
             </div>
@@ -117,6 +120,38 @@ export function StepTwo({
             </div>
 
             {data.serviceType && renderServiceSpecificFields()}
+
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="descriptionOfGoods" className="text-base font-medium">
+                  {t("descriptionOfGoods")}
+                  <span className="text-red-500 ml-1">*</span>
+                </Label>
+                <Textarea
+                  id="descriptionOfGoods"
+                  name="descriptionOfGoods"
+                  value={data.descriptionOfGoods || ""}
+                  onChange={handleInputChange}
+                  placeholder={t("descriptionOfGoodsPlaceholder")}
+                  className="w-full px-3 py-2 border rounded-md border-input bg-background text-sm ring-offset-background placeholder:italic placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="additionalInfo" className="text-base font-medium">
+                  {t("additionalInfo")}
+                </Label>
+                <Textarea
+                  id="additionalInfo"
+                  name="additionalInfo"
+                  value={data.additionalInfo || ""}
+                  onChange={handleInputChange}
+                  placeholder={t("additionalInfoPlaceholder")}
+                  className="w-full px-3 py-2 border rounded-md border-input bg-background text-sm ring-offset-background placeholder:italic placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                />
+              </div>
+            </div>
           </div>
         )}
       </div>
