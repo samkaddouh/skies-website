@@ -38,20 +38,20 @@ body {
   animation: subtleJump 2s ease-in-out infinite;
 }
 
-/* Style for service icons */
-.service-icon {
+/* Style for service icons - excluding ServiceTypeCard */
+.service-icon:not(.service-type-card svg) {
   color: var(--icon-color);
   stroke: var(--icon-color);
 }
 
-/* Style for Lucide icons */
-.text-center svg {
+/* Style for Lucide icons - excluding ServiceTypeCard */
+.text-center svg:not(.service-type-card svg) {
   color: var(--icon-color);
   stroke: var(--icon-color);
 }
 
 /* Additional style for Solutions section icons */
-.solutions-card svg {
+.solutions-card svg:not(.service-type-card svg) {
   color: var(--icon-color);
   stroke: var(--icon-color);
 }
@@ -60,8 +60,8 @@ body {
 .video-aspect-ratio-container {
   position: relative;
   width: 100%;
-  min-width: 100%; /* Fixes Safari shifting issue */
-  overflow: hidden; /* Ensures content doesn't shift unexpectedly */
+  min-width: 100%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@ body {
 .video-aspect-ratio-container::before {
   content: "";
   display: block;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  padding-top: 56.25%;
 }
 
 .video-wrapper {
@@ -84,7 +84,7 @@ body {
   justify-content: center;
   will-change: transform;
   contain: layout style;
-  min-width: 100%; /* Ensures Safari does not shift layout */
+  min-width: 100%;
 }
 
 .video-wrapper video {
@@ -93,8 +93,6 @@ body {
   object-fit: cover;
   min-width: 100%;
 }
-
-
 
 @layer base {
   :root {
@@ -152,8 +150,6 @@ body {
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -162,3 +158,4 @@ body {
     @apply bg-background text-foreground;
   }
 }
+

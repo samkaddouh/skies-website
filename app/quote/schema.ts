@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+export type ServiceType = "air" | "sea" | "land" | null
+
 // Base schema for fields common to all freight types
 export const BaseQuoteSchema = z.object({
   name: z
@@ -22,30 +24,30 @@ export const BaseQuoteSchema = z.object({
   weight: z.string().min(1, "weightRequired"),
   dimensions: z.string().min(1, "dimensionsRequired"),
   additionalInfo: z.string().optional(),
+  companyNameSupplier: z.string().min(2, "companyNameTooShort"),
+  packages: z.string().min(1, "packagesRequired"),
+  shippingTerm: z.enum(["EXW", "FOB"] as const).optional(),
+  exactPickupAddress: z.string().optional(),
+  cargoGaugeType: z.enum(["in", "out"]).optional(),
+  containerCapacity: z.number().optional(),
+  cargoDimensions: z.string().optional(),
 })
 
 // Air freight specific fields
 export const AirFreightSchema = BaseQuoteSchema.extend({
-  isHazardous: z.boolean(),
-  isPerishable: z.boolean(),
   preferredAirline: z.string().optional(),
   deliveryUrgency: z.enum(["standard", "express", "priority"]),
 })
 
 // Sea freight specific fields
 export const SeaFreightSchema = BaseQuoteSchema.extend({
-  containerType: z.enum(["20ft", "40ft", "40ft-hc", "lcl"]),
-  isHazardous: z.boolean(),
-  requiresRefrigeration: z.boolean(),
-  preferredShippingLine: z.string().optional(),
+  equipmentNeeded: z.enum(["LCL", "20ft", "40ft", "20HC", "40HC", "20REEF", "40REEF", "20OT", "40OT"]),
 })
 
 // Land freight specific fields
 export const LandFreightSchema = BaseQuoteSchema.extend({
-  vehicleType: z.enum(["van", "truck", "trailer"]),
   requiresLoadingAssistance: z.boolean(),
   requiresUnloadingAssistance: z.boolean(),
-  preferredDeliveryDate: z.string().optional(),
 })
 
 export type BaseQuoteFormData = z.infer<typeof BaseQuoteSchema>

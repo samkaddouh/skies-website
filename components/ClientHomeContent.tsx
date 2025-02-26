@@ -21,14 +21,14 @@ export default function ClientHomeContent() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="bg-primary-color text-white py-6 md:py-8">
+       {/* Hero Section */}
+       <section className="bg-[#828282] text-white py-6 md:py-8">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-3 animate-subtle-jump">{t("expeditingYourSuccess")}</h1>
           <p className="text-lg md:text-xl mb-4">{t("homeDescription")}</p>
           <Link
             href="/quote"
-            className="bg-white text-primary-color px-6 py-3 rounded-lg font-bold text-lg inline-block hover:bg-gray-100 transition-colors"
+            className="bg-white text-[#828282] px-6 py-3 rounded-lg font-bold text-lg inline-block hover:bg-gray-100 transition-colors"
           >
             {t("getStartedNow")}
           </Link>

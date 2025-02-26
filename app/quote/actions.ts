@@ -40,13 +40,14 @@ export async function sendQuote(formData: FormData) {
         <p><strong>Name:</strong> ${data.name}</p>
         <p><strong>Email:</strong> ${data.email}</p>
         <p><strong>Phone:</strong> ${data.phone}</p>
+        <p><strong>Company Name:</strong> ${data.companyNameSupplier}</p>
         <p><strong>Origin:</strong> ${data.originAddress}</p>
         <p><strong>Destination:</strong> ${data.destinationAddress}</p>
         <p><strong>Description:</strong> ${data.description}</p>
         <p><strong>Value:</strong> ${data.value}</p>
         <p><strong>Weight:</strong> ${data.weight}</p>
         <p><strong>Dimensions:</strong> ${data.dimensions}</p>
-        ${data.additionalInfo ? `<p><strong>Additional Info:</strong> ${data.additionalInfo}</p>` : ''}
+        ${data.additionalInfo ? `<p><strong>Additional Info:</strong> ${data.additionalInfo}</p>` : ""}
       `,
     }
 
@@ -55,9 +56,10 @@ export async function sendQuote(formData: FormData) {
 
     return { success: true }
   } catch (error) {
-    console.error('Quote request error:', error)
+    console.error("Quote request error:", error)
     return {
       error: "An error occurred while sending the quote request. Please try again.",
     }
   }
 }
+
