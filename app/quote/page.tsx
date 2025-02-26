@@ -72,7 +72,7 @@ const initialFormState: FormState = {
   isSubmitting: false,
   serviceType: null,
   currentStep: 1,
-  maxSteps: 3,
+  maxSteps: 2,
   data: {
     name: "",
     email: "",
@@ -259,72 +259,112 @@ export default function QuotePage() {
               </Select>
             </div>
 
-            {(formState.data.equipmentNeeded === "40REEF" || formState.data.equipmentNeeded === "20REEF") && (
-              <TemperatureInput
-                value={formState.data.temperature || ""}
-                onChange={(value, unit) =>
-                  setFormState((prev) => ({
-                    ...prev,
-                    data: {
-                      ...prev.data,
-                      temperature: value,
-                      temperatureUnit: unit,
-                    },
-                  }))
-                }
-                t={t}
-                language={language}
-              />
-            )}
-
-            {(formState.data.equipmentNeeded === "20OT" || formState.data.equipmentNeeded === "40OT") && (
+            {formState.data.equipmentNeeded && formState.data.equipmentNeeded !== "LCL" && (
               <div className="space-y-6">
-                <div className="space-y-3">
-                  <Label className="text-base font-medium">
-                    {t("cargoGaugeType")}
-                    <span className="text-red-500 ml-1">*</span>
-                  </Label>
-
-                  <RadioGroup
-                    value={formState.data.cargoGaugeType}
-                    onValueChange={(value: "in" | "out") =>
+                {(formState.data.equipmentNeeded === "20REEF" || formState.data.equipmentNeeded === "40REEF") && (
+                  <TemperatureInput
+                    value={formState.data.temperature || ""}
+                    onChange={(value, unit) =>
                       setFormState((prev) => ({
                         ...prev,
                         data: {
                           ...prev.data,
-                          cargoGaugeType: value,
-                          containerCapacity: value === "in" ? 0 : prev.data.containerCapacity,
-                          cargoDimensions: value === "in" ? "" : prev.data.cargoDimensions,
+                          temperature: value,
+                          temperatureUnit: unit,
                         },
                       }))
                     }
-                    className="flex flex-col space-y-2"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="in" id="gauge-in" />
-                      <Label htmlFor="gauge-in">{t("inGauge")}</Label>
+                    t={t}
+                    language={language}
+                  />
+                )}
+
+                {(formState.data.equipmentNeeded === "20OT" || formState.data.equipmentNeeded === "40OT") && (
+                  <div className="space-y-6">
+                    <div className="space-y-3">
+                      <Label className="text-base font-medium">
+                        {t("cargoGaugeType")}
+                        <span className="text-red-500 ml-1">*</span>
+                      </Label>
+
+                      <RadioGroup
+                        value={formState.data.cargoGaugeType}
+                        onValueChange={(value: "in" | "out") =>
+                          setFormState((prev) => ({
+                            ...prev,
+                            data: {
+                              ...prev.data,
+                              cargoGaugeType: value,
+                              containerCapacity: value === "in" ? 0 : prev.data.containerCapacity,
+                              cargoDimensions: value === "in" ? "" : prev.data.cargoDimensions,
+                            },
+                          }))
+                        }
+                        className="flex flex-col space-y-2"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="in" id="gauge-in" />
+                          <Label htmlFor="gauge-in">{t("inGauge")}</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="out" id="gauge-out" />
+                          <Label htmlFor="gauge-out">{t("outOfGauge")}</Label>
+                        </div>
+                      </RadioGroup>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="out" id="gauge-out" />
-                      <Label htmlFor="gauge-out">{t("outOfGauge")}</Label>
-                    </div>
-                  </RadioGroup>
+
+                    {formState.data.cargoGaugeType === "out" && (
+                      <GaugeButton
+                        value={formState.data.containerCapacity || 0}
+                        onChange={(value) =>
+                          setFormState((prev) => ({
+                            ...prev,
+                            data: { ...prev.data, containerCapacity: value },
+                          }))
+                        }
+                        className="mt-4"
+                        t={t}
+                        language={language}
+                      />
+                    )}
+                  </div>
+                )}
+
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label className="text-base font-medium">
+                      {t("originAddress")}
+                      <span className="text-red-500 ml-1">*</span>
+                    </Label>
+                    <input
+                      type="text"
+                      name="originAddress"
+                      value={formState.data.originAddress}
+                      onChange={handleInputChange}
+                      placeholder={t("destinationAddressPlaceholder")}
+                      className="w-full px-3 py-2 border rounded-md border-input bg-background text-sm ring-offset-background placeholder:italic placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-base font-medium">
+                      {t("destinationAddress")}
+                      <span className="text-red-500 ml-1">*</span>
+                    </Label>
+                    <input
+                      type="text"
+                      name="destinationAddress"
+                      value={formState.data.destinationAddress}
+                      onChange={handleInputChange}
+                      placeholder={t("destinationAddressPlaceholder")}
+                      className="w-full px-3 py-2 border rounded-md border-input bg-background text-sm ring-offset-background placeholder:italic placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      required
+                    />
+                  </div>
                 </div>
 
-                {formState.data.cargoGaugeType === "out" && (
-                  <>
-                    <GaugeButton
-                      value={formState.data.containerCapacity || 0}
-                      onChange={(value) =>
-                        setFormState((prev) => ({
-                          ...prev,
-                          data: { ...prev.data, containerCapacity: value },
-                        }))
-                      }
-                      className="mt-4"
-                      t={t}
-                      language={language}
-                    />
+                {(formState.data.equipmentNeeded === "20OT" || formState.data.equipmentNeeded === "40OT") &&
+                  formState.data.cargoGaugeType === "out" && (
                     <div className="space-y-2">
                       <DimensionsInput
                         value={formState.data.cargoDimensions || ""}
@@ -333,8 +373,7 @@ export default function QuotePage() {
                         language={language}
                       />
                     </div>
-                  </>
-                )}
+                  )}
               </div>
             )}
 
@@ -508,7 +547,7 @@ export default function QuotePage() {
             language={language}
           />
         )
-      case 3:
+      default:
         return (
           <div className="flex justify-center">
             <Button type="submit" disabled={formState.isSubmitting}>
@@ -516,8 +555,6 @@ export default function QuotePage() {
             </Button>
           </div>
         )
-      default:
-        return null
     }
   }
 

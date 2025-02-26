@@ -156,13 +156,15 @@ export function StepTwo({
         )}
       </div>
 
-      <div className={`flex justify-between items-center mt-6 ${language === "ar" ? "flex-row-reverse" : ""}`}>
-        <Button onClick={onPrevious}>{t("previous")}</Button>
-        <Button variant="destructive" onClick={onReset} type="button">
-          {t("resetForm")}
-        </Button>
-        <Button onClick={onNext}>{t("next")}</Button>
-      </div>
+      {data.shippingTerm && (
+        <div className={`flex justify-between items-center mt-6 ${language === "ar" ? "flex-row-reverse" : ""}`}>
+          <Button onClick={onPrevious}>{t("previous")}</Button>
+          <Button variant="destructive" onClick={onReset} type="button">
+            {t("resetForm")}
+          </Button>
+          <Button onClick={onNext}>{t("submitQuote")}</Button>
+        </div>
+      )}
     </div>
   )
 }
