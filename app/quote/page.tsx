@@ -42,14 +42,13 @@ interface FormState {
     deliveryUrgency?: "standard" | "express" | "priority"
     exactPickupAddress?: string
     msdsFile?: File
-    typeOfService?: "FOB" | "FCA SUPPLIER WAREHOUSE" | "FCA PORT" | "EXW"
+    typeOfService?: "FOB" | "EXW"
     equipmentNeeded?: "LCL" | "20ft" | "40ft" | "20HC" | "40HC" | "20REEF" | "40REEF" | "20OT" | "40OT"
     temperature?: string
     temperatureUnit?: "C" | "F"
     cargoInGauge?: boolean
     cargoDimensions?: string
     dimensionsUnit?: "cm" | "in" | "m" | "ft"
-    cbm?: string
     requiresLoadingAssistance: boolean
     requiresUnloadingAssistance: boolean
     packages: string
@@ -95,7 +94,6 @@ const initialFormState: FormState = {
     cargoInGauge: false,
     cargoDimensions: "",
     dimensionsUnit: "m",
-    cbm: "",
     requiresLoadingAssistance: false,
     requiresUnloadingAssistance: false,
     packages: "",

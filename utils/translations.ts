@@ -1,5 +1,149 @@
 export const translations = {
     en: {
+        
+        // Quote Page
+        // First Page
+        basicInfo: "Basic Information",
+        name: "Name",
+        email: "Email",
+        phone: "Phone",
+        companyNameSupplier: "Company Name",
+        next: "Next",
+
+        // Second Page 
+        selectShippingMethod: "Shipping Information",
+        shippingTerms: "Shipping Terms",
+        selectShippingTerm: "Select Shipping Term",
+        shippingTermEXW: "Ex Works",
+        exactPickupAddress: "Exact Pickup Address",
+        shippingTermFOB: "Free On Board",
+        cargoType: "Cargo Type",
+        selectCargoType: "Select Cargo Type",
+        isGeneralCargo: "General Cargo",
+        isHazardousCargo: "Hazardous Cargo",
+        chooseService: "Choose a Service",
+        // airFreight - seaFreight - landFreight
+                // airFreightDescription - seaFreightDescription - landFreightDescription
+                // If user clicks on airFreight:
+                cargoDetails: "Cargo Details",
+                    weight: "Weight",
+                    dimensions: "Dimensions (L x W x H)",
+                    centimeters: "Centimeters",
+                    inches: "Inches",
+                    meters: "Meters",
+                    feet: "Feet",
+                    dimensionsPlaceholderCM: "e.g. 120 x 80 x 100",
+                    dimensionsPlaceholderIN: "e.g. 47 x 31 x 39",
+                    dimensionsPlaceholderM: "e.g. 1.2 x 0.8 x 1.0",
+                    dimensionsPlaceholderFT: "e.g. 3.9 x 2.6 x 3.3",
+                    originAddress: "Origin Address",
+                    // destinationAddressPlaceholder: "e.g. 456 Business Ave, London, UK",
+                    destinationAddress: "Destination Address",
+                    destinationAddressPlaceholder: "e.g. 456 Business Ave, London, UK",
+                    numberOfPackages: "Number of Packages",
+                    packagesPlaceholder: "e.g. 3 cartons, 1 pallet",
+                    packagesHelp: "Enter the number and type of packages (e.g., cartons, pallets)",
+                    deliveryUrgency: "Delivery Urgency",
+                    standardDelivery: "Standard Delivery",
+                    expressDelivery: "Express Delivery",
+                    priorityDelivery: "Priority Delivery",
+                    descriptionOfGoods: "Description of Goods",
+                    descriptionOfGoodsPlaceholder: "Describe the goods you're shipping",
+                    additionalInfo: "Additional Information",
+                    additionalInfoPlaceholder: "Enter any additional information",
+                    // if user clicks on seaFreight
+                    equipmentNeeded: "Equipment Needed",
+                    // USER chose LCL:
+
+                    // weight - additionalInfoPlaceholder 
+
+                // USER chose 20ft, 40ft, 20HC, 40HC:
+
+                    // originAddress destinationAddress descriptionOfGoods additionalInfo
+
+                // USER chose 20REEF, 40REEF:
+                temperature: "Temperature",
+                enterTemperature: "Enter temperature",
+                celsius: "Celsius",
+                fahrenheit: "Fahrenheit",
+
+                // USER chose 20OT, 40OT:
+                cargoGaugeType: "Cargo Gauge Type",
+                inGauge: "In Gauge",
+                outOfGauge: "Out of Gauge",
+                containerCapacity: "Container Capacity",
+                empty: "Empty",
+                full: "Full",
+
+        
+
+                // if user clicks landFreight:
+                loadingAssistance: "Loading Assistance",
+                unloadingAssistance: "Unloading Assistance",
+                yes: "Yes",
+                no: "No",
+
+                    previous: "Previous",
+                    resetForm: "Reset",
+                    submitQuote: "Submit Quote",
+
+                    // End of Quote Page
+
+        containerType: "Container Type",
+        selectContainerType: "Select Container Type",
+        
+        
+        
+        
+        
+        
+        
+        landFreightDescription: "Reliable door-to-door land transportation",
+        
+        
+        typeOfService: "Type of Service",
+        
+        
+        cargoDimensions: "Cargo Dimensions (L x W x H)",
+        
+        
+        
+       
+        additionalServices: "Additional Services",
+        finalReview: "Final Review",
+        
+        
+        
+        
+       
+        temperatureUnit: "Unit",
+        
+        
+        
+       
+        
+        
+        
+        
+        selectUnit: "Select unit",
+       
+        weightPlaceholderKG: "Enter weight in kilograms",
+        weightPlaceholderLB: "Enter weight in pounds",
+        weightPlaceholderTON: "Enter weight in tons",
+        required: "required",
+        kilograms: "Kilograms",
+        pounds: "Pounds",
+        tons: "Tons",
+        originAddressPlaceholder: "e.g. 123 Main St, Dubai, UAE",
+        
+        
+
+        
+       
+
+        quoteError: "An error occurred while submitting your quote. Please try again.",
+
+
         home: "Home",
         about: "About",
         services: "Services",
@@ -9,8 +153,7 @@ export const translations = {
         seaFreight: "Sea Freight",
         contact: "Contact",
         getQuote: "Get a Quote",
-        callUs: "Call Us",
-        expeditingYourSuccess: "Accompanying Your Success",
+        accompanyingYourSuccess: "Accompanying Your Success",
         homeDescription:
             "Skies Shipping & Clearing provides international shipping services door to door as well as customs clearances.",
         getStartedNow: "Get Started Now",
@@ -28,17 +171,12 @@ export const translations = {
         getQuoteTitle: "Get a Quote",
         getQuoteDescription:
             "Need an international shipping quote? Fill out the form below and tell us about your freight shipment. We will contact you with low cost shipping rates.",
-        name: "Name",
-        email: "Email",
-        phone: "Phone",
-        originAddress: "Origin Address",
-        destinationAddress: "Destination Address",
+        
+        
         serviceType: "Types of Services",
         selectService: "Select a service",
-        value: "Value",
-        weight: "Weight",
-        dimensions: "Dimensions (L x W x H)",
-        additionalInfo: "Additional Information",
+        
+       
         sendMessage: "Send Message",
         contactUs: "Contact Us",
         sendUsMessage: "Send Us a Message",
@@ -135,115 +273,199 @@ export const translations = {
         "submitting": "Submitting...",
         "submit": "Submit Quote Request",
         errorMessage: "An unexpected error occurred. Please try again later.",
-        isGeneralCargo: "General Cargo",
-        isHazardousCargo: "Hazardous Cargo",
-        deliveryUrgency: "Delivery Urgency",
-        standardDelivery: "Standard Delivery",
-        expressDelivery: "Express Delivery",
-        priorityDelivery: "Priority Delivery",
-        containerType: "Container Type",
-        selectContainerType: "Select Container Type",
-        requiresRefrigeration: "Requires refrigeration",
-        vehicleType: "Vehicle Type",
-        selectVehicleType: "Select vehicle type",
-        van: "Van",
-        truck: "Truck",
-        trailer: "Trailer",
-        requiresLoadingAssistance: "Requires loading assistance",
-        requiresUnloadingAssistance: "Requires unloading assistance",
-        quoteError: "An error occurred while submitting your quote. Please try again.",
-        landFreightDescription: "Reliable door-to-door land transportation",
-        contactPerson: "Contact Person",
-        msdsFile: "MSDS File",
-        exactPickupAddress: "Exact Pickup Address",
-        typeOfService: "Type of Service",
-        equipmentNeeded: "Equipment Needed",
-        temperature: "Temperature",
-        cargoDimensions: "Cargo Dimensions (L x W x H)",
-        cbm: "CBM (Cubic Meters)",
-        companyNameSupplier: "Company Name",
-        basicInfo: "Basic Information",
-        selectShippingMethod: "Shipping Information",
-        cargoDetails: "Cargo Details",
-        additionalServices: "Additional Services",
-        finalReview: "Final Review",
-        previous: "Previous",
-        next: "Next",
-        yes: "Yes",
-        no: "No",
-        numberOfCartons: "Number of Cartons",
-        numberOfPallets: "Number of Pallets",
-        shippingTerms: "Shipping Terms",
-        selectShippingTerm: "Select Shipping Term",
-        shippingTermEXW: "Ex Works",
-        shippingTermFOB: "Free On Board",
-        temperatureUnit: "Unit",
-        enterTemperature: "Enter temperature",
-        celsius: "Celsius",
-        fahrenheit: "Fahrenheit",
-        temperatureRequired: "Temperature is required for refrigerated containers",
-        containerCapacity: "Container Capacity",
-        empty: "Empty",
-        full: "Full",
-        cargoGaugeType: "Cargo Gauge Type",
-        inGauge: "In Gauge",
-        outOfGauge: "Out of Gauge",
-
-        cargoType: "Cargo Type",
-        selectCargoType: "Select Cargo Type",
-        numberOfPackages: "Number of Packages",
-        packagesPlaceholder: "e.g. 3 cartons, 1 pallet",
-        packagesHelp: "Enter the number and type of packages (e.g., cartons, pallets)",
-        chooseService: "Choose a Service",
-        loadingAssistance: "Loading Assistance",
-        unloadingAssistance: "Unloading Assistance",
-        dimensionsPlaceholderCM: "e.g. 120 x 80 x 100",
-        dimensionsPlaceholderIN: "e.g. 47 x 31 x 39",
-        dimensionsPlaceholderM: "e.g. 1.2 x 0.8 x 1.0",
-        dimensionsPlaceholderFT: "e.g. 3.9 x 2.6 x 3.3",
-        selectUnit: "Select unit",
-        centimeters: "Centimeters",
-        inches: "Inches",
-        meters: "Meters",
-        feet: "Feet",
-        weightPlaceholderKG: "Enter weight in kilograms",
-        weightPlaceholderLB: "Enter weight in pounds",
-        weightPlaceholderTON: "Enter weight in tons",
-        required: "required",
-        kilograms: "Kilograms",
-        pounds: "Pounds",
-        tons: "Tons",
-        originAddressPlaceholder: "e.g. 123 Main St, Dubai, UAE",
-        destinationAddressPlaceholder: "e.g. 456 Business Ave, London, UK",
-        resetForm: "Reset",
-
-        additionalInfoPlaceholder: "Enter any additional information",
-        descriptionOfGoods: "Description of Goods",
-        descriptionOfGoodsPlaceholder: "Describe the goods you're shipping",
-        submitQuote: "Submit Quote"
+       
 
     },
     ar: {
+        //Quote Page
+            //First Page StepOne.tsx
+                basicInfo: "المعلومات الأساسية",
+                name: "الاسم",
+                email: "البريد الإلكتروني",
+                phone: "الهاتف",
+                companyNameSupplier: "اسم الشركة",
+                next: "التالي",
+            //Second Page StepTwo.tsx
+                selectShippingMethod: "معلومات الشحن",
+                shippingTerms: "شروط الشحن",
+                selectShippingTerm: "اختر شروط الشحن",
+                shippingTermEXW: "تسليم المصنع",
+                // If user clicks EXW, exactPickupAddress shows
+                exactPickupAddress: "عنوان الاستلام الدقيق",
+                shippingTermFOB: "تسليم ظهر السفينة",
+                cargoType: "نوع البضائع",
+                selectCargoType: "اختر نوع البضائع",
+                isGeneralCargo: "شحن عام",
+                isHazardousCargo: "هل هذه بضائع خطرة",
+                selectService: "اختر خدمة",
+                // airFreight - seaFreight - landFreight
+                // airFreightDescription - seaFreightDescription - landFreightDescription
+                // If user clicks on airFreight:
+                cargoDetails: "تفاصيل الشحنة",
+                weight: "الوزن",
+                kilograms: "كيلوغرام",
+                pounds: "باوند",
+                tons: "طن",
+                weightPlaceholderKG: "أدخل الوزن بالكيلوغرام",
+                weightPlaceholderLB: "أدخل الوزن بالباوند",
+                weightPlaceholderTON: "أدخل الوزن بالطن",
+                dimensions: "الأبعاد (الطول × العرض × الارتفاع)",
+                centimeters: "سنتيمتر",
+                inches: "بوصة",
+                meters: "متر",
+                feet: "قدم",
+                dimensionsPlaceholderCM: "أدخل الأبعاد بالسنتيمتر (مثال: 120 × 80 × 100)",
+                dimensionsPlaceholderIN: "أدخل الأبعاد بالبوصة (مثال: 47 × 31 × 39)",
+                dimensionsPlaceholderM: "أدخل الأبعاد بالمتر (مثال: 1.2 × 0.8 × 1.0)",
+                dimensionsPlaceholderFT: "أدخل الأبعاد بالقدم (مثال: 3.9 × 2.6 × 3.3)",
+                originAddress: "عنوان المنشأ",
+                destinationAddressPlaceholder: "مثال: 456 شارع الأعمال، لندن، المملكة المتحدة",
+                destinationAddress: "عنوان الوجهة",
+                // destinationAddressPlaceholder
+                numberOfPackages: "عدد الطرود",
+                packagesPlaceholder: "مثال: 3 كراتين، 1 منصة",
+                packagesHelp: "أدخل عدد ونوع الطرود (مثل الكراتين والمنصات)",
+                deliveryUrgency: "عاجلية التسليم",
+                standardDelivery: "تسليم قياسي",
+                expressDelivery: "تسليم سريع",
+                priorityDelivery: "تسليم ذو أولوية",
+                descriptionOfGoods: "وصف البضائع",
+                descriptionOfGoodsPlaceholder: "صف البضائع التي تقوم بشحنها",
+                additionalInfo: "معلومات إضافية",
+                additionalInfoPlaceholder: "أدخل أي معلومات إضافية",
+                // USER chose seaFreight:
+                equipmentNeeded: "المعدات المطلوبة",
+                // USER chose LCL:
+
+                    // weight - additionalInfoPlaceholder 
+
+                // USER chose 20ft, 40ft, 20HC, 40HC:
+
+                    // originAddress destinationAddress descriptionOfGoods additionalInfo
+
+                // USER chose 20REEF, 40REEF:
+
+                temperature: "درجة الحرارة",
+                enterTemperature: "أدخل درجة الحرارة",
+                celsius: "درجة مئوية",
+                fahrenheit: "درجة فهرنهايت",
+
+                // originAddress destinationAddress descriptionOfGoods additionalInfo
+
+                // USER chose 20OT, 40OT:
+                containerCapacity: "سعة الحاوية",
+                empty: "فارغ",
+                full: "ممتلئ",
+                cargoGaugeType: "نوع قياس الشحنة",
+                inGauge: "داخل القياس",
+                outOfGauge: "خارج القياس",
+
+                
+
+                // USER chose landFreight:
+                loadingAssistance: "المساعدة في التحميل",
+                unloadingAssistance: "المساعدة في التفريغ",
+                yes: "نعم",
+                no: "لا",
+
+                // weight - additionalInfo
+
+                previous: "السابق",
+                resetForm: "إعادة تعيين النموذج",
+                submitQuote: "إرسال الاقتباس",
+        
+                // End of Quote Page
+
+
+
+
+
+                
+
+
+        
+       
+        serviceType: "أنواع الخدمات",
+        
+        
+        requiresLoadingAssistance: "يتطلب مساعدة في التحميل",
+                requiresUnloadingAssistance: "يتطلب مساعدة في التفريغ",
+        
+        
+        
+        
+        containerType: "نوع الحاوية",
+        selectContainerType: "اختر نوع الحاوية",
+    
+        
+        
+        typeOfService: "نوع الخدمة",
+        
+        
+        cargoDimensions: "أبعاد الشحنة",
+        
+        
+        
+        additionalServices: "خدمات إضافية",
+        finalReview: "المراجعة النهائية",
+       
+        
+        
+        
+        
+        temperatureUnit: "الوحدة",
+       
+        
+        
+        
+        
+        
+        
+        chooseService: "اختر الخدمة",
+        
+        
+        selectUnit: "اختر الوحدة",
+        
+        
+        required: "مطلوب",
+       
+        originAddressPlaceholder: "مثال: 123 شارع الرئيسي، دبي، الإمارات",
+        
+      
+        
+        
+        
+       
+        //Navbar
         home: "الرئيسية",
         about: "حول",
         services: "الخدمات",
-        customsClearance: "التخليص الجمركي",
-        freightForwarding: "الشحن والنقل",
-        airFreight: "الشحن الجوي",
-        seaFreight: "الشحن البحري",
         contact: "اتصل بنا",
         getQuote: "احصل على عرض سعر",
-        callUs: "اتصل بنا",
-        expeditingYourSuccess: "نرافق نجاحك",
+
+       
+        // Home Header
+        accompanyingYourSuccess: "نرافق نجاحك",
         homeDescription:
             "نؤمّن خدمات الشحن الدولي من الباب إلى الباب بالإضافة إلى التخليص الجمركي",
         getStartedNow: "ابدأ الآن",
+
+        // Home Body
+         // Services
+         customsClearance: "التخليص الجمركي",
+         freightForwarding: "الشحن والنقل",
+         airFreight: "الشحن الجوي",
+         seaFreight: "الشحن البحري",
+         landFreightDescription: "نقل بري موثوق من الباب إلى الباب",
         ourServices: "خدماتنا",
         seaFreightDescription: "شحن فعال من حيث التكلفة للبضائع الكبيرة",
         freightForwardingDescription: "خدمات لوجستية ونقل فعالة",
         airFreightDescription: "شحن سريع للبضائع الحساسة للوقت",
         internationalShipping: "الشحن الدولي",
         internationalShippingDescription: "حلول شحن عالمية",
+
+
+
         solutionsForYou: "حلول لك",
         firstTimeImporters: "المستوردون لأول مرة",
         firstTimeImportersDescription: "نرشدك خلال عملية استيراد الشحنات لأول مرة.",
@@ -251,16 +473,7 @@ export const translations = {
         experiencedShippersDescription: "نقوم بتبسيط شحناتك الدورية لتحقيق أقصى قدر من الكفاءة.",
         getQuoteTitle: "احصل على عرض سعر",
         getQuoteDescription: "هل تحتاج إلى عرض سعر للشحن الدولي؟ املأ النموذج أدناه وأخبرنا عن تفاصيل الشحنة, وسنتقدم لك بعرض بأسعار منخفضة",
-        name: "الاسم",
-        email: "البريد الإلكتروني",
-        phone: "الهاتف",
-        originAddress: "عنوان المنشأ",
-        destinationAddress: "عنوان الوجهة",
-        serviceType: "أنواع الخدمات",
-        selectService: "اختر خدمة",
-        value: "القيمة",
-        weight: "الوزن",
-        dimensions: "الأبعاد (الطول × العرض × الارتفاع)",
+       
         sendMessage: "إرسال الرسالة",
         contactUs: "اتصل بنا",
         sendUsMessage: "أرسل لنا رسالة",
@@ -348,99 +561,20 @@ export const translations = {
         unexpectedError: "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
         companyTooShort: "يجب أن يكون اسم الشركة على الأقل حرفين",
         companyContainsNumbers: "يجب ألا يحتوي اسم الشركة على أرقام",
+        "landFreight": "الشحن البري",
+
         "quoteRequest": "طلب عرض سعر",
         "quoteSuccess": "تم إرسال طلب عرض السعر بنجاح!",
         "selectServiceType": "اختر نوع الخدمة",
-        "landFreight": "الشحن البري",
+       
         "description": "الوصف",
         "submitting": "جاري الإرسال...",
         "submit": "إرسال طلب عرض السعر",
         errorMessage: "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى لاحقاً.",
-        isGeneralCargo: "شحن عام",
-        isHazardousCargo: "هل هذه بضائع خطرة",
-        deliveryUrgency: "عاجلية التسليم",
-        standardDelivery: "تسليم قياسي",
-        expressDelivery: "تسليم سريع",
-        priorityDelivery: "تسليم ذو أولوية",
-        containerType: "نوع الحاوية",
-        selectContainerType: "اختر نوع الحاوية",
-        requiresRefrigeration: "يتطلب تبريد",
-        vehicleType: "نوع المركبة",
-        selectVehicleType: "اختر نوع المركبة",
-        van: "شاحنة صغيرة",
-        truck: "شاحنة",
-        trailer: "مقطورة",
-        requiresLoadingAssistance: "يتطلب مساعدة في التحميل",
-        requiresUnloadingAssistance: "يتطلب مساعدة في التفريغ",
+      
+        
         quoteError: "حدث خطأ أثناء إرسال طلب عرض السعر. يرجى المحاولة مرة أخرى.",
-        landFreightDescription: "نقل بري موثوق من الباب إلى الباب",
-        contactPerson: "الشخص المسؤول",
-        msdsFile: "ملف بيانات سلامة المواد",
-        exactPickupAddress: "عنوان الاستلام الدقيق",
-        typeOfService: "نوع الخدمة",
-        equipmentNeeded: "المعدات المطلوبة",
-        temperature: "درجة الحرارة",
-        cargoDimensions: "أبعاد الشحنة",
-        cbm: "المتر المكعب",
-        companyNameSupplier: "اسم الشركة",
-        basicInfo: "المعلومات الأساسية",
-        selectShippingMethod: "معلومات الشحن",
-        cargoDetails: "تفاصيل الشحنة",
-        additionalServices: "خدمات إضافية",
-        finalReview: "المراجعة النهائية",
-        previous: "السابق",
-        next: "التالي",
-        yes: "نعم",
-        no: "لا",
-        numberOfCartons: "عدد الكراتين",
-        numberOfPallets: "عدد المنصات",
-        shippingTerms: "شروط الشحن",
-        selectShippingTerm: "اختر شروط الشحن",
-        shippingTermEXW: "تسليم المصنع",
-        shippingTermFOB: "تسليم ظهر السفينة",
-        temperatureUnit: "الوحدة",
-        enterTemperature: "أدخل درجة الحرارة",
-        celsius: "درجة مئوية",
-        fahrenheit: "درجة فهرنهايت",
-        temperatureRequired: "درجة الحرارة مطلوبة للحاويات المبردة",
-        containerCapacity: "سعة الحاوية",
-        empty: "فارغ",
-        full: "ممتلئ",
-        cargoGaugeType: "نوع قياس الشحنة",
-        inGauge: "داخل القياس",
-        outOfGauge: "خارج القياس",
-        cargoType: "نوع البضائع",
-        selectCargoType: "اختر نوع البضائع",
-        numberOfPackages: "عدد الطرود",
-        packagesPlaceholder: "مثال: 3 كراتين، 1 منصة",
-        packagesHelp: "أدخل عدد ونوع الطرود (مثل الكراتين والمنصات)",
-        chooseService: "اختر الخدمة",
-        loadingAssistance: "المساعدة في التحميل",
-        unloadingAssistance: "المساعدة في التفريغ",
-        dimensionsPlaceholderCM: "أدخل الأبعاد بالسنتيمتر (مثال: 120 × 80 × 100)",
-        dimensionsPlaceholderIN: "أدخل الأبعاد بالبوصة (مثال: 47 × 31 × 39)",
-        dimensionsPlaceholderM: "أدخل الأبعاد بالمتر (مثال: 1.2 × 0.8 × 1.0)",
-        dimensionsPlaceholderFT: "أدخل الأبعاد بالقدم (مثال: 3.9 × 2.6 × 3.3)",
-        selectUnit: "اختر الوحدة",
-        centimeters: "سنتيمتر",
-        inches: "بوصة",
-        meters: "متر",
-        feet: "قدم",
-        weightPlaceholderKG: "أدخل الوزن بالكيلوغرام",
-        weightPlaceholderLB: "أدخل الوزن بالباوند",
-        weightPlaceholderTON: "أدخل الوزن بالطن",
-        required: "مطلوب",
-        kilograms: "كيلوغرام",
-        pounds: "باوند",
-        tons: "طن",
-        originAddressPlaceholder: "مثال: 123 شارع الرئيسي، دبي، الإمارات",
-        destinationAddressPlaceholder: "مثال: 456 شارع الأعمال، لندن، المملكة المتحدة",
-        resetForm: "إعادة تعيين النموذج",
-        additionalInfo: "معلومات إضافية",
-        additionalInfoPlaceholder: "أدخل أي معلومات إضافية",
-        descriptionOfGoods: "وصف البضائع",
-        descriptionOfGoodsPlaceholder: "صف البضائع التي تقوم بشحنها",
-        submitQuote: "إرسال الاقتباس"
+        
     },
 }
 
