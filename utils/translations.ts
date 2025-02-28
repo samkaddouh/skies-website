@@ -239,7 +239,6 @@ export const translations = {
         yearsExperience: "10+ years in global logistics",
         trustedPartnerships: "Trusted partnerships with industry leaders",
         customsExpertise: "Unparalleled customs clearance expertise",
-        globalReach: "Extensive global network and reach",
         support: "24/7 dedicated customer support",
         meetTheTeam: "Meet the Team",
         clientTestimonials: "Client Testimonials",
@@ -273,6 +272,12 @@ export const translations = {
         "submitting": "Submitting...",
         "submit": "Submit Quote Request",
         errorMessage: "An unexpected error occurred. Please try again later.",
+
+
+
+///Service Page
+exploreServices: "Explore Our Services",
+       
        
 
     },
@@ -535,7 +540,7 @@ export const translations = {
         yearsExperience: "أكثر من 10 سنوات في الخدمات اللوجستية العالمية",
         trustedPartnerships: "شراكات موثوقة مع رواد الصناعة",
         customsExpertise: "خبرة لا مثيل لها في التخليص الجمركي",
-        globalReach: "شبكة عالمية واسعة",
+    
         support: "دعم العملاء المخصص على مدار الساعة طوال أيام الأسبوع",
         meetTheTeam: "تعرف على فريقنا",
         clientTestimonials: "آراء العملاء",
@@ -574,6 +579,12 @@ export const translations = {
       
         
         quoteError: "حدث خطأ أثناء إرسال طلب عرض السعر. يرجى المحاولة مرة أخرى.",
+
+
+
+        //Our Services Page
+        exploreServices: "استكشف خدماتنا",
+        
         
     },
 }
