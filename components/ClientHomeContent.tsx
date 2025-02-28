@@ -53,24 +53,27 @@ export default function ClientHomeContent() {
   }, [])
 
   const services = [
-    { icon: Ship, label: "seaFreight", description: "seaFreightDescription", id: "sea-freight" },
-    {
-      icon: ArrowLeftRight,
-      label: "freightForwarding",
-      description: "freightForwardingDescription",
-      id: "freight-forwarding",
-    },
-    { icon: Plane, label: "airFreight", description: "airFreightDescription", id: "air-freight" },
     {
       icon: Globe,
       label: "internationalShipping",
       description: "internationalShippingDescription",
       id: "international-shipping",
     },
+    {
+      icon: ArrowLeftRight,
+      label: "freightForwarding",
+      description: "freightForwardingDescription",
+      id: "freight-forwarding",
+    },
+    
+    
+    { icon: Plane, label: "airFreight", description: "airFreightDescription", id: "air-freight" },
+    { icon: Ship, label: "seaFreight", description: "seaFreightDescription", id: "sea-freight" },
+    { icon: Truck, label: "lastMileDelivery", description: "lastMileDeliveryDescription", id: "last-mile-delivery" },
     { icon: Shield, label: "cargoInsurance", description: "cargoInsuranceDescription", id: "cargo-insurance" },
     { icon: FileCheck, label: "customsClearance", description: "customsClearanceDescription", id: "customs-clearance" },
     { icon: Warehouse, label: "warehousing", description: "warehousingDescription", id: "warehousing" },
-    { icon: Truck, label: "lastMileDelivery", description: "lastMileDeliveryDescription", id: "last-mile-delivery" },
+    
   ] as const
 
   const solutions = [
