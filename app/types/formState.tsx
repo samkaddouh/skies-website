@@ -100,7 +100,7 @@ export interface ServiceSpecificAreaProp {
     handleDimensionsChange: (value: string, unit: "cm" | "in" | "m" | "ft") => void,
     handleWeightChange: (value: string, unit: "kg" | "lb" | "ton") => void,
     formState: FormState,
-    data: {
+    data?: {
         shippingTerm?: ShippingTerm
         serviceType: ServiceType
         exactPickupAddress?: string
@@ -112,7 +112,7 @@ export interface ServiceSpecificAreaProp {
     setFormState: React.Dispatch<React.SetStateAction<FormState>>,
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
     t: (key: TranslationKey) => string,
-    language: string
+    language?: string
 }
 
 

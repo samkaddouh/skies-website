@@ -272,14 +272,7 @@ export const translations = {
         "submitting": "Submitting...",
         "submit": "Submit Quote Request",
         errorMessage: "An unexpected error occurred. Please try again later.",
-
-
-
-        ///Service Page
         exploreServices: "Explore Our Services",
-
-
-
     },
     ar: {
         //Quote Page
