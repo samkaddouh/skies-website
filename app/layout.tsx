@@ -3,8 +3,8 @@ import type { Metadata } from "next"
 import { Roboto_Flex } from "next/font/google"
 import "./globals.css"
 import { LanguageProvider } from "@/contexts/LanguageContext"
-import ClientWrapper from "../components/ClientWrapper"
-import LanguageAwareLayout from "../components/LanguageAwareLayout"
+import ClientWrapper from "@/components/ClientWrapper"
+import LanguageAwareLayout from "@/components/LanguageAwareLayout"
 
 const robotoFlex = Roboto_Flex({
   subsets: ["latin"],

@@ -1,38 +1,23 @@
 import type React from "react"
-import { Plane, Ship, Truck } from "lucide-react"
-import { ServiceTypeCard } from "./ServiceTypeCard"
+import { useState } from "react"
+
 import { ShippingTermsSelector } from "./ShippingTermsSelector"
 import { CargoTypeSelector } from "./CargoTypeSelector"
-import type { TranslationKey } from "@/utils/translations"
-import type { ShippingTerm } from "./ShippingTermsSelector"
-import { Label } from "@/components/ui/label"
+
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 
-type ServiceType = "air" | "sea" | "land" | null
-type CargoType = "general" | "hazardous"
+import { Label } from "@/components/ui/label"
 
-interface StepTwoProps {
-  data: {
-    shippingTerm?: ShippingTerm
-    serviceType: ServiceType
-    exactPickupAddress?: string
-    cargoType?: CargoType
-    packages?: string
-    descriptionOfGoods?: string
-    additionalInfo?: string
-  }
-  onServiceTypeSelect: (type: ServiceType) => void
-  onShippingTermChange: (term: ShippingTerm) => void
-  onCargoTypeChange: (type: CargoType) => void
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  t: (key: TranslationKey) => string
-  renderServiceSpecificFields: () => React.ReactNode
-  onPrevious: () => void
-  onNext: () => void
-  onReset: () => void
-  language: string
-}
+import { StepTwoProps } from "@/app/types/formState"
+
+import { ServiceSpecificArea } from "@/components/forms/ServiceSpecificArea"
+
+import { ServiceTypeSelector } from "@/components/forms/ServiceTypeSelector"
+
+
+
+
 
 export function StepTwo({
   data,
@@ -41,12 +26,16 @@ export function StepTwo({
   onCargoTypeChange,
   handleInputChange,
   t,
-  renderServiceSpecificFields,
   onPrevious,
   onNext,
   onReset,
   language,
+  handleDimensionsChange,
+  handleWeightChange,
+  formState,
+  setFormState
 }: StepTwoProps) {
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold mb-4">{t("selectShippingMethod")}</h2>
@@ -89,37 +78,27 @@ export function StepTwo({
 
         {data.shippingTerm && (
           <div className="space-y-6">
-            <div className="space-y-3">
-              <Label className="text-base font-medium">
-                {t("chooseService")}
-                <span className="text-red-500 ml-1">*</span>
-              </Label>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <ServiceTypeCard
-                  icon={Plane}
-                  title={t("airFreight")}
-                  description={t("airFreightDescription")}
-                  onClick={() => onServiceTypeSelect("air")}
-                  isSelected={data.serviceType === "air"}
-                />
-                <ServiceTypeCard
-                  icon={Ship}
-                  title={t("seaFreight")}
-                  description={t("seaFreightDescription")}
-                  onClick={() => onServiceTypeSelect("sea")}
-                  isSelected={data.serviceType === "sea"}
-                />
-                <ServiceTypeCard
-                  icon={Truck}
-                  title={t("landFreight")}
-                  description={t("landFreightDescription")}
-                  onClick={() => onServiceTypeSelect("land")}
-                  isSelected={data.serviceType === "land"}
-                />
-              </div>
-            </div>
 
-            {data.serviceType && renderServiceSpecificFields()}
+            <ServiceTypeSelector
+              t={t}
+              value={data.serviceType}
+              onServiceTypeSelect={onServiceTypeSelect}
+            />
+            {data.serviceType &&
+              <ServiceSpecificArea
+                handleDimensionsChange={handleDimensionsChange}
+                handleWeightChange={handleWeightChange}
+                formState={formState}
+                data={data}
+                setFormState={setFormState}
+                handleInputChange={handleInputChange}
+                t={t}
+                language={language}
+              />
+            }
+
+
+
 
             <div className="space-y-4">
               <div className="space-y-2">
@@ -156,16 +135,18 @@ export function StepTwo({
         )}
       </div>
 
-      {data.shippingTerm && (
-        <div className={`flex justify-between items-center mt-6 ${language === "ar" ? "flex-row-reverse" : ""}`}>
-          <Button onClick={onPrevious}>{t("previous")}</Button>
-          <Button variant="destructive" onClick={onReset} type="button">
-            {t("resetForm")}
-          </Button>
-          <Button onClick={onNext}>{t("submitQuote")}</Button>
-        </div>
-      )}
-    </div>
+      {
+        data.shippingTerm && (
+          <div className={`flex justify-between items-center mt-6 ${language === "ar" ? "flex-row-reverse" : ""}`}>
+            <Button onClick={onPrevious}>{t("previous")}</Button>
+            <Button variant="destructive" onClick={onReset} type="button">
+              {t("resetForm")}
+            </Button>
+            <Button onClick={onNext}>{t("submitQuote")}</Button>
+          </div>
+        )
+      }
+    </div >
   )
 }
 

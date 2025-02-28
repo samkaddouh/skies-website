@@ -12,6 +12,8 @@ interface FormFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   required?: boolean
   className?: string
+  onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+  error?: string
 }
 
 export function FormField({
@@ -22,12 +24,22 @@ export function FormField({
   onChange,
   required = false,
   className = "",
+  onBlur,
+  error = "",
 }: FormFieldProps) {
   return (
     <div className={`space-y-2 ${className}`}>
       <Label htmlFor={name}>{label}</Label>
       {type === "textarea" ? (
-        <Textarea id={name} name={name} value={value as string} onChange={onChange} required={required} />
+        <Textarea
+          id={name}
+          name={name}
+          value={value as string}
+          onChange={onChange}
+          onBlur={onBlur}
+          required={required}
+          className={`border ${error ? "border-red-500" : "border-gray-300"}`}
+        />
       ) : type === "checkbox" ? (
         <Checkbox
           id={name}
@@ -38,9 +50,18 @@ export function FormField({
           }
         />
       ) : (
-        <Input id={name} name={name} type={type} value={value as string} onChange={onChange} required={required} />
+        <Input
+          id={name}
+          name={name}
+          type={type}
+          value={value as string}
+          onChange={onChange}
+          onBlur={onBlur}
+          required={required}
+          className={`border ${error ? "border-red-500" : "border-gray-300"}`}
+        />
       )}
+      {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
   )
 }
-

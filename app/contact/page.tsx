@@ -3,7 +3,7 @@ import type React from "react"
 import { useState } from "react"
 import { useLanguage } from "@/contexts/LanguageContext"
 import { translations, type TranslationKey } from "@/utils/translations"
-import { sendEmail } from "./actions"
+import { sendEmail } from "@/actions/index"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -267,12 +267,11 @@ export default function ContactPage() {
                         value={formState.data[field.name as keyof ContactFormData]}
                         onChange={handleInputChange}
                         onBlur={() => handleBlur(field.name as keyof ContactFormData)}
-                        className={`w-full text-base md:text-lg p-3 ${
-                          formState.touched[field.name as keyof ContactFormData] &&
+                        className={`w-full text-base md:text-lg p-3 ${formState.touched[field.name as keyof ContactFormData] &&
                           formState.errors[field.name as keyof ContactFormData]
-                            ? "border-red-500 focus:border-red-500"
-                            : ""
-                        }`}
+                          ? "border-red-500 focus:border-red-500"
+                          : ""
+                          }`}
                         required={field.required}
                         placeholder={`${t("enter")} ${field.label.toLowerCase()}`}
                       />
@@ -302,9 +301,8 @@ export default function ContactPage() {
                     onChange={handleInputChange}
                     onBlur={() => handleBlur("message")}
                     rows={6}
-                    className={`w-full resize-none text-base md:text-lg p-3 ${
-                      formState.touched.message && formState.errors.message ? "border-red-500 focus:border-red-500" : ""
-                    }`}
+                    className={`w-full resize-none text-base md:text-lg p-3 ${formState.touched.message && formState.errors.message ? "border-red-500 focus:border-red-500" : ""
+                      }`}
                     required
                     placeholder={t("messagePlaceholder")}
                   />

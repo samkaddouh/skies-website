@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+
+[dir="rtl"] button{
+  direction: rtl;
+}
+
+[dir="rtl"] input, [dir="rtl"] select, [dir="rtl"] [role="radiogroup"] {
+  direction: rtl;
+}
+[dir="rtl"] [role="radiogroup"] label{
+  margin-right: 10px !important;
+}
 /* RTL Support */
 [dir="rtl"] {
   text-align: right;

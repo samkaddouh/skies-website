@@ -1,21 +1,32 @@
 "use client"
 
 import type React from "react"
+import { useState } from "react"
 import { FormField } from "./FormField"
-import type { TranslationKey } from "@/utils/translations"
-
-interface StepOneProps {
-  data: {
-    name: string
-    email: string
-    phone: string
-    companyNameSupplier: string
-  }
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-  t: (key: TranslationKey) => string
-}
+import { StepOneProps } from "@/app/types/formState";
 
 export function StepOne({ data, handleInputChange, t }: StepOneProps) {
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    companyNameSupplier: "",
+  })
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    let errorMessage = ""
+    if (!value.trim()) {
+      errorMessage = t("required")
+    } else if (name === "email" && !/^[\w.%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)) {
+      errorMessage = t("invalidEmail")
+    } else if (name === "phone" && !/^\+?\d{7,15}$/.test(value)) {
+      errorMessage = t("invalidPhone")
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: errorMessage }))
+  }
+
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">{t("basicInfo")}</h2>
@@ -29,7 +40,9 @@ export function StepOne({ data, handleInputChange, t }: StepOneProps) {
           name="name"
           value={data.name}
           onChange={handleInputChange}
+          onBlur={handleBlur}
           required
+          error={errors.name}
         />
         <FormField
           label={
@@ -41,7 +54,9 @@ export function StepOne({ data, handleInputChange, t }: StepOneProps) {
           type="email"
           value={data.email}
           onChange={handleInputChange}
+          onBlur={handleBlur}
           required
+          error={errors.email}
         />
         <FormField
           label={
@@ -53,7 +68,9 @@ export function StepOne({ data, handleInputChange, t }: StepOneProps) {
           type="tel"
           value={data.phone}
           onChange={handleInputChange}
+          onBlur={handleBlur}
           required
+          error={errors.phone}
         />
         <FormField
           label={
@@ -64,7 +81,9 @@ export function StepOne({ data, handleInputChange, t }: StepOneProps) {
           name="companyNameSupplier"
           value={data.companyNameSupplier}
           onChange={handleInputChange}
+          onBlur={handleBlur}
           required
+          error={errors.companyNameSupplier}
         />
       </div>
     </>

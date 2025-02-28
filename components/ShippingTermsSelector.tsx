@@ -3,10 +3,12 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 import type { TranslationKey } from "@/utils/translations"
+import {
+  shippingTerms,
+  ShippingTerm
 
-export const shippingTerms = ["EXW", "FOB"] as const
+} from "@/app/types/formState"
 
-export type ShippingTerm = (typeof shippingTerms)[number]
 
 interface ShippingTermsSelectorProps {
   value: ShippingTerm | undefined
