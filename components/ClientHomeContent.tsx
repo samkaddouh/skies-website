@@ -141,9 +141,7 @@ export default function ClientHomeContent() {
     <div>
       {/* Hero Section with gradient overlay */}
       <section className="relative py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-[#828282] bg-opacity-90 bg-gradient-to-r from-gray-900 to-gray-700"
-        >
+        <div className="absolute inset-0 bg-[#828282] bg-opacity-90 bg-gradient-to-r from-gray-900 to-gray-700">
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-800/80"></div>
         </div>
 
@@ -175,7 +173,7 @@ export default function ClientHomeContent() {
               services.map((service) => (
                 <div key={service.id}>
                   <Link
-                    href={`/services#${service.id}`}
+                    href={`/services?section=${service.id}`}
                     className="flex flex-col h-full text-center group bg-white hover:bg-[#f1f5f9] p-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 border border-gray-100"
                   >
                     <service.icon

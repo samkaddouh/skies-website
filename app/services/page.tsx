@@ -34,13 +34,13 @@ export default function ServicesPage() {
 
   const services = [
     {
-      id: "sea-freight",
-      icon: Ship,
-      title: t("seaFreight"),
-      description: t("seaFreightDescription"),
-      longDescription: t("seaFreightLong"),
-      videoSrc: "/videos/sea-freight.mp4",
-      posterSrc: "/images/sea-freight-poster.jpg",
+      id: "international-shipping",
+      icon: Globe,
+      title: t("internationalShipping"),
+      description: t("internationalShippingDescription"),
+      longDescription: t("internationalShippingLong"),
+      videoSrc: "/videos/international-shipping.mp4",
+      posterSrc: "/images/international-shipping-poster.jpg",
     },
     {
       id: "freight-forwarding",
@@ -61,14 +61,24 @@ export default function ServicesPage() {
       posterSrc: "/images/air-freight-poster.jpg",
     },
     {
-      id: "international-shipping",
-      icon: Globe,
-      title: t("internationalShipping"),
-      description: t("internationalShippingDescription"),
-      longDescription: t("internationalShippingLong"),
-      videoSrc: "/videos/international-shipping.mp4",
-      posterSrc: "/images/international-shipping-poster.jpg",
+      id: "sea-freight",
+      icon: Ship,
+      title: t("seaFreight"),
+      description: t("seaFreightDescription"),
+      longDescription: t("seaFreightLong"),
+      videoSrc: "/videos/sea-freight.mp4",
+      posterSrc: "/images/sea-freight-poster.jpg",
     },
+    {
+      id: "last-mile-delivery",
+      icon: Truck,
+      title: t("lastMileDelivery"),
+      description: t("lastMileDeliveryDescription"),
+      longDescription: t("lastMileDeliveryLong"),
+      videoSrc: "/videos/land-freight.mp4",
+      posterSrc: "/images/last-mile-delivery-poster.jpg",
+    },
+   
     {
       id: "cargo-insurance",
       icon: Shield,
@@ -96,15 +106,7 @@ export default function ServicesPage() {
       videoSrc: "/videos/warehousing.mp4",
       posterSrc: "/images/warehousing-poster.jpg",
     },
-    {
-      id: "last-mile-delivery",
-      icon: Truck,
-      title: t("lastMileDelivery"),
-      description: t("lastMileDeliveryDescription"),
-      longDescription: t("lastMileDeliveryLong"),
-      videoSrc: "/videos/last-mile-delivery.mp4",
-      posterSrc: "/images/last-mile-delivery-poster.jpg",
-    },
+    
   ]
 
   return (
