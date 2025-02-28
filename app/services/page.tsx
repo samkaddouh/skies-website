@@ -39,7 +39,7 @@ export default function ServicesPage() {
       title: t("internationalShipping"),
       description: t("internationalShippingDescription"),
       longDescription: t("internationalShippingLong"),
-      videoSrc: "/videos/international-shipping.mp4",
+      videoSrc: "/videos/international-shipping.mov",
       posterSrc: "/images/international-shipping-poster.jpg",
     },
     {
@@ -48,7 +48,7 @@ export default function ServicesPage() {
       title: t("freightForwarding"),
       description: t("freightForwardingDescription"),
       longDescription: t("freightForwardingLong"),
-      videoSrc: "/videos/freight-forwarding.mp4",
+      videoSrc: "/videos/freight-forwarding.mov",
       posterSrc: "/images/freight-forwarding-poster.jpg",
     },
     {
@@ -57,7 +57,7 @@ export default function ServicesPage() {
       title: t("airFreight"),
       description: t("airFreightDescription"),
       longDescription: t("airFreightLong"),
-      videoSrc: "/videos/air-freight.mp4",
+      videoSrc: "/videos/air-freight.mov",
       posterSrc: "/images/air-freight-poster.jpg",
     },
     {
@@ -66,7 +66,7 @@ export default function ServicesPage() {
       title: t("seaFreight"),
       description: t("seaFreightDescription"),
       longDescription: t("seaFreightLong"),
-      videoSrc: "/videos/sea-freight.mp4",
+      videoSrc: "/videos/sea-freight.mov",
       posterSrc: "/images/sea-freight-poster.jpg",
     },
     {
@@ -75,7 +75,7 @@ export default function ServicesPage() {
       title: t("lastMileDelivery"),
       description: t("lastMileDeliveryDescription"),
       longDescription: t("lastMileDeliveryLong"),
-      videoSrc: "/videos/land-freight.mp4",
+      videoSrc: "/videos/land-freight.mov",
       posterSrc: "/images/last-mile-delivery-poster.jpg",
     },
    
@@ -85,7 +85,7 @@ export default function ServicesPage() {
       title: t("cargoInsurance"),
       description: t("cargoInsuranceDescription"),
       longDescription: t("cargoInsuranceLong"),
-      videoSrc: "/videos/cargo-insurance.mp4",
+      videoSrc: "/videos/cargo-insurance.mov",
       posterSrc: "/images/cargo-insurance-poster.jpg",
     },
     {
@@ -94,7 +94,7 @@ export default function ServicesPage() {
       title: t("customsClearance"),
       description: t("customsClearanceDescription"),
       longDescription: t("customsClearanceLong"),
-      videoSrc: "/videos/customs-clearance.mp4",
+      videoSrc: "/videos/customs-clearance.mov",
       posterSrc: "/images/customs-clearance-poster.jpg",
     },
     {
@@ -103,7 +103,7 @@ export default function ServicesPage() {
       title: t("warehousing"),
       description: t("warehousingDescription"),
       longDescription: t("warehousingLong"),
-      videoSrc: "/videos/warehousing.mp4",
+      videoSrc: "/videos/warehousing.mov",
       posterSrc: "/images/warehousing-poster.jpg",
     },
     
