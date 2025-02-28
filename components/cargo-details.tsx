@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { DimensionsInput } from "./DimensionsInput"
 import { WeightInput } from "./WeightInput"
+import { useState } from "react"
+import { BaseQuoteSchema } from "@/app/quote/schema"
 
 interface CargoDetailsProps {
   data: {
@@ -27,22 +29,39 @@ interface CargoDetailsProps {
   t: (key: TranslationKey) => string
 }
 
-export function CargoDetails({ data, handleInputChange, onDimensionsChange, onWeightChange, t }: CargoDetailsProps) {
+export function CargoDetails({
+  data,
+  handleInputChange,
+  onDimensionsChange,
+  onWeightChange,
+  t,
+}: CargoDetailsProps) {
   const { language } = useLanguage()
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
-  const handlePackagesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    handleInputChange(e)
-  }
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    console.log("hellloooo");
+    console.log("Handling blur for field:", name, "with value:", value)
 
-  const handleDimensionsChange = (value: string, unit: "cm" | "in" | "m" | "ft") => {
-    if (onDimensionsChange) {
-      onDimensionsChange(value, unit)
-    }
-  }
+    const result = BaseQuoteSchema.safeParse({ [name]: value })
+    console.log("Validation result:", result)
 
-  const handleWeightChange = (value: string, unit: "kg" | "lb" | "ton") => {
-    if (onWeightChange) {
-      onWeightChange(value, unit)
+    if (!result.success) {
+      const error = result?.error?.errors.filter((a) => a.path[0] === name)
+      if (error && error.length > 0) {
+        const message = error[0].message as string
+        console.log("Error message:", message)
+        setErrors((prev) => ({ ...prev, [name]: t(message as string) }))
+      } else {
+        setErrors((prev) => ({ ...prev, [name]: "" }))
+      }
+    } else {
+      setErrors((prev) => {
+        const newErrors = { ...prev }
+        delete newErrors[name]
+        return newErrors
+      })
     }
   }
 
@@ -56,11 +75,14 @@ export function CargoDetails({ data, handleInputChange, onDimensionsChange, onWe
           </Label>
           <WeightInput
             value={data.weightValue || ""}
-            onChange={handleWeightChange}
+            onChange={(value, unit) => onWeightChange?.(value, unit)}
             t={t}
             language={language}
             hideLabel
+            name="weightValue"
+            handleBlur={handleBlur}
           />
+          {errors.weightValue && <p className="text-red-500 text-sm">{errors.weightValue}</p>}
         </div>
 
         <div className="space-y-2">
@@ -68,12 +90,15 @@ export function CargoDetails({ data, handleInputChange, onDimensionsChange, onWe
             {t("dimensions")} <span className="text-red-500">*</span>
           </Label>
           <DimensionsInput
+            name="cargoDimensions"
             value={data.cargoDimensions || ""}
-            onChange={handleDimensionsChange}
+            onChange={onDimensionsChange ?? (() => { })}
             t={t}
             language={language}
             hideLabel
+            handleBlur={handleBlur}
           />
+          {errors.cargoDimensions && <p className="text-red-500 text-sm">{errors.cargoDimensions}</p>}
         </div>
 
         <div className="space-y-2">
@@ -86,8 +111,10 @@ export function CargoDetails({ data, handleInputChange, onDimensionsChange, onWe
             value={data.originAddress || ""}
             onChange={handleInputChange}
             required
+            onBlur={handleBlur}
             className="placeholder:text-muted-foreground placeholder:italic"
           />
+          {errors.originAddress && <p className="text-red-500 text-sm">{errors.originAddress}</p>}
         </div>
 
         <div className="space-y-2">
@@ -100,8 +127,10 @@ export function CargoDetails({ data, handleInputChange, onDimensionsChange, onWe
             value={data.destinationAddress || ""}
             onChange={handleInputChange}
             required
+            onBlur={handleBlur}
             className="placeholder:text-muted-foreground placeholder:italic"
           />
+          {errors.destinationAddress && <p className="text-red-500 text-sm">{errors.destinationAddress}</p>}
         </div>
 
         <div className="space-y-2">
@@ -112,15 +141,16 @@ export function CargoDetails({ data, handleInputChange, onDimensionsChange, onWe
             id="packages"
             name="packages"
             value={data.packages || ""}
-            onChange={handlePackagesChange}
+            onChange={handleInputChange}
             placeholder={t("packagesPlaceholder")}
             className="placeholder:text-muted-foreground placeholder:italic"
             required
+            onBlur={handleBlur}
           />
+          {errors.packages && <p className="text-red-500 text-sm">{errors.packages}</p>}
           <p className="text-sm text-muted-foreground">{t("packagesHelp")}</p>
         </div>
       </div>
     </>
   )
 }
-

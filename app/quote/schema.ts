@@ -2,6 +2,7 @@ import { z } from "zod"
 
 export type ServiceType = "air" | "sea" | "land" | null
 
+
 // Base schema for fields common to all freight types
 export const BaseQuoteSchema = z.object({
   name: z
@@ -21,16 +22,17 @@ export const BaseQuoteSchema = z.object({
   serviceType: z.enum(["air", "sea", "land"] as const),
   description: z.string().min(0, "descriptionTooShort"),
   // value: z.string().min(1, "valueRequired"),
-  weightValue: z.string().min(1, "weightRequired"),
-  dimensions: z.string().min(0, "dimensionsRequired"),
+  weightValue: z.string().min(1, "required"),
+  dimensions: z.string().min(0, "required"),
   additionalInfo: z.string().optional(),
   companyNameSupplier: z.string().min(2, "companyNameTooShort"),
   packages: z.string().min(1, "packagesRequired"),
   shippingTerm: z.enum(["EXW", "FOB"] as const).optional(),
-  exactPickupAddress: z.string().optional(),
+  exactPickupAddress: z.string().min(6, "required"),
+  descriptionOfGoods: z.string().min(6, "required"),
   cargoGaugeType: z.enum(["in", "out"]).optional(),
   containerCapacity: z.number().optional(),
-  cargoDimensions: z.string().optional(),
+  cargoDimensions: z.string().min(3, "required"),
 })
 
 // Air freight specific fields

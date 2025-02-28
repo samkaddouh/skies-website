@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, FormEventHandler } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -9,14 +9,16 @@ import type { TranslationKey } from "@/utils/translations"
 type Unit = "kg" | "lb" | "ton"
 
 interface WeightInputProps {
+  name?: string
   value: string
   onChange: (value: string, unit: Unit) => void
   t: (key: TranslationKey) => string
   language: "en" | "ar"
-  hideLabel?: boolean
+  hideLabel?: boolean,
+  handleBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
 }
 
-export function WeightInput({ value, onChange, t, language, hideLabel = false }: WeightInputProps) {
+export function WeightInput({ name, value, onChange, t, language, hideLabel = false, handleBlur }: WeightInputProps) {
   const [unit, setUnit] = useState<Unit>("kg")
   const [convertedWeight, setConvertedWeight] = useState<string>("")
 
@@ -76,12 +78,14 @@ export function WeightInput({ value, onChange, t, language, hideLabel = false }:
               </SelectContent>
             </Select>
             <Input
+              name={name}
               id="weight"
               type="number"
               value={value}
               onChange={(e) => onChange(e.target.value, unit)}
               placeholder={t(`weightPlaceholder${unit.toUpperCase()}` as TranslationKey)}
               className="flex-grow placeholder:text-muted-foreground placeholder:italic"
+              onBlur={handleBlur}
             />
           </div>
           {value && convertedWeight && (

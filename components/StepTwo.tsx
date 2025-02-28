@@ -16,7 +16,7 @@ import { ServiceSpecificArea } from "@/components/forms/ServiceSpecificArea"
 import { ServiceTypeSelector } from "@/components/forms/ServiceTypeSelector"
 
 
-
+import { BaseQuoteSchema } from "@/app/quote/schema"
 
 
 export function StepTwo({
@@ -35,6 +35,28 @@ export function StepTwo({
   formState,
   setFormState
 }: StepTwoProps) {
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    console.log("helllo");
+    const result = BaseQuoteSchema.safeParse({ [name]: value });
+    if (!result.success) {
+      const error = result?.error?.errors.filter(a => a.path[0] === name);
+      if (error && error.length > 0) {
+        const message = error[0].message as string;
+        setErrors((prev) => ({ ...prev, [name]: t(message as string) }));
+      } else {
+        setErrors((prev) => ({ ...prev, [name]: "" }));
+      }
+    } else {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -57,10 +79,12 @@ export function StepTwo({
                 name="exactPickupAddress"
                 value={data.exactPickupAddress || ""}
                 onChange={handleInputChange}
+                onBlur={handleBlur}
                 placeholder={t("destinationAddressPlaceholder")}
                 className="w-full px-3 py-2 border rounded-md border-input bg-background text-sm ring-offset-background placeholder:italic placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 required
               />
+              {errors.exactPickupAddress && <p className="text-red-500 text-sm">{errors.exactPickupAddress}</p>}
             </div>
             <div className="space-y-3">
               <Label className="text-base font-medium"></Label>
@@ -78,7 +102,6 @@ export function StepTwo({
 
         {data.shippingTerm && (
           <div className="space-y-6">
-
             <ServiceTypeSelector
               t={t}
               value={data.serviceType}
@@ -97,9 +120,6 @@ export function StepTwo({
               />
             }
 
-
-
-
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="descriptionOfGoods" className="text-base font-medium">
@@ -111,10 +131,12 @@ export function StepTwo({
                   name="descriptionOfGoods"
                   value={data.descriptionOfGoods || ""}
                   onChange={handleInputChange}
+                  onBlur={handleBlur}
                   placeholder={t("descriptionOfGoodsPlaceholder")}
                   className="w-full px-3 py-2 border rounded-md border-input bg-background text-sm ring-offset-background placeholder:italic placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   required
                 />
+                {errors.descriptionOfGoods && <p className="text-red-500 text-sm">{errors.descriptionOfGoods}</p>}
               </div>
 
               <div className="space-y-2">
@@ -149,4 +171,3 @@ export function StepTwo({
     </div >
   )
 }
-
