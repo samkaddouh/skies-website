@@ -12,6 +12,8 @@ import { Button } from "@/components/ui/button"
 import { CheckCircle, AlertCircle } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { z } from "zod"
+import Link from "next/link"
+
 
 const ContactFormSchema = z.object({
   name: z
@@ -230,12 +232,24 @@ export default function ContactPage() {
 
   return (
     <div className="bg-white min-h-[calc(100vh-64px)]">
-      <section className="bg-[#828282] text-white py-6 md:py-8">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 animate-subtle-jump">{t("contactUs")}</h1>
-          <p className="text-lg md:text-xl mb-4">{t("contactDescription")}</p>
+
+      <section className="relative py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[#828282] bg-opacity-90 bg-gradient-to-r from-gray-900 to-gray-700">
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-800/80"></div>
+        </div>
+
+        <div className="container relative mx-auto px-6 sm:px-8">
+          <div className="max-w-3xl">
+            <h1 className="animate-subtle-jump text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#f8f9fa]">{t("contactUs")}</h1>
+
+            <p className="text-lg sm:text-xl md:text-2xl mb-6 text-gray-100">{t("contactDescription")}</p>
+
+          </div>
         </div>
       </section>
+
+
+
       <div className="container mx-auto px-4 py-8 pb-16 md:pb-24">
         <Card className="w-full max-w-[95%] md:max-w-4xl mx-auto">
           <CardContent className="p-4 md:p-8 pt-6">

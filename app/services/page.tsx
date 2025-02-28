@@ -78,7 +78,7 @@ export default function ServicesPage() {
       videoSrc: "/videos/land-freight.mov",
       posterSrc: "/images/last-mile-delivery-poster.jpg",
     },
-   
+
     {
       id: "cargo-insurance",
       icon: Shield,
@@ -106,7 +106,7 @@ export default function ServicesPage() {
       videoSrc: "/videos/warehousing.mov",
       posterSrc: "/images/warehousing-poster.jpg",
     },
-    
+
   ]
 
   return (
@@ -119,7 +119,7 @@ export default function ServicesPage() {
 
         <div className="container relative mx-auto px-6 sm:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#f8f9fa]">{t("ourServices")}</h1>
+            <h1 className="animate-subtle-jump text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#f8f9fa]">{t("ourServices")}</h1>
 
             <p className="text-lg sm:text-xl md:text-2xl mb-6 text-gray-100">{t("servicesDescription")}</p>
 
@@ -166,7 +166,7 @@ function ServiceSection({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && videoRef.current) {
-            videoRef.current.play().catch(() => {})
+            videoRef.current.play().catch(() => { })
           } else if (videoRef.current) {
             videoRef.current.pause()
           }

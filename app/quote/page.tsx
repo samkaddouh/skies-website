@@ -197,10 +197,19 @@ export default function QuotePage() {
 
     return (
         <div className="min-h-screen bg-white flex flex-col">
-            <section className="bg-[#828282] text-white py-6 md:py-8">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-3 animate-subtle-jump">{t("getQuoteTitle")}</h1>
-                    <p className="text-lg md:text-xl mb-4">{t("getQuoteDescription")}</p>
+
+            <section className="relative py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden">
+                <div className="absolute inset-0 bg-[#828282] bg-opacity-90 bg-gradient-to-r from-gray-900 to-gray-700">
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-800/80"></div>
+                </div>
+
+                <div className="container relative mx-auto px-6 sm:px-8">
+                    <div className="max-w-3xl">
+                        <h1 className="animate-subtle-jump text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#f8f9fa]">{t("getQuoteTitle")}</h1>
+
+                        <p className="text-lg sm:text-xl md:text-2xl mb-6 text-gray-100">{t("getQuoteDescription")}</p>
+
+                    </div>
                 </div>
             </section>
             <div className="container mx-auto px-4 py-8 flex-grow">

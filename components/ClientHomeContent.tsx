@@ -65,15 +65,15 @@ export default function ClientHomeContent() {
       description: "freightForwardingDescription",
       id: "freight-forwarding",
     },
-    
-    
+
+
     { icon: Plane, label: "airFreight", description: "airFreightDescription", id: "air-freight" },
     { icon: Ship, label: "seaFreight", description: "seaFreightDescription", id: "sea-freight" },
     { icon: Truck, label: "lastMileDelivery", description: "lastMileDeliveryDescription", id: "last-mile-delivery" },
     { icon: Shield, label: "cargoInsurance", description: "cargoInsuranceDescription", id: "cargo-insurance" },
     { icon: FileCheck, label: "customsClearance", description: "customsClearanceDescription", id: "customs-clearance" },
     { icon: Warehouse, label: "warehousing", description: "warehousingDescription", id: "warehousing" },
-    
+
   ] as const
 
   const solutions = [
@@ -150,7 +150,7 @@ export default function ClientHomeContent() {
 
         <div className="container relative mx-auto px-6 sm:px-8">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#f8f9fa]">
+            <h1 className="animate-subtle-jump text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-[#f8f9fa]">
               {t("accompanyingYourSuccess")}
             </h1>
 
