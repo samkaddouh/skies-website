@@ -53,24 +53,27 @@ export default function ClientHomeContent() {
   }, [])
 
   const services = [
-    { icon: Ship, label: "seaFreight", description: "seaFreightDescription", id: "sea-freight" },
-    {
-      icon: ArrowLeftRight,
-      label: "freightForwarding",
-      description: "freightForwardingDescription",
-      id: "freight-forwarding",
-    },
-    { icon: Plane, label: "airFreight", description: "airFreightDescription", id: "air-freight" },
     {
       icon: Globe,
       label: "internationalShipping",
       description: "internationalShippingDescription",
       id: "international-shipping",
     },
+    {
+      icon: ArrowLeftRight,
+      label: "freightForwarding",
+      description: "freightForwardingDescription",
+      id: "freight-forwarding",
+    },
+    
+    
+    { icon: Plane, label: "airFreight", description: "airFreightDescription", id: "air-freight" },
+    { icon: Ship, label: "seaFreight", description: "seaFreightDescription", id: "sea-freight" },
+    { icon: Truck, label: "lastMileDelivery", description: "lastMileDeliveryDescription", id: "last-mile-delivery" },
     { icon: Shield, label: "cargoInsurance", description: "cargoInsuranceDescription", id: "cargo-insurance" },
     { icon: FileCheck, label: "customsClearance", description: "customsClearanceDescription", id: "customs-clearance" },
     { icon: Warehouse, label: "warehousing", description: "warehousingDescription", id: "warehousing" },
-    { icon: Truck, label: "lastMileDelivery", description: "lastMileDeliveryDescription", id: "last-mile-delivery" },
+    
   ] as const
 
   const solutions = [
@@ -141,9 +144,7 @@ export default function ClientHomeContent() {
     <div>
       {/* Hero Section with gradient overlay */}
       <section className="relative py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-[#828282] bg-opacity-90 bg-gradient-to-r from-gray-900 to-gray-700"
-        >
+        <div className="absolute inset-0 bg-[#828282] bg-opacity-90 bg-gradient-to-r from-gray-900 to-gray-700">
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-800/80"></div>
         </div>
 
@@ -175,7 +176,7 @@ export default function ClientHomeContent() {
               services.map((service) => (
                 <div key={service.id}>
                   <Link
-                    href={`/services#${service.id}`}
+                    href={`/services?section=${service.id}`}
                     className="flex flex-col h-full text-center group bg-white hover:bg-[#f1f5f9] p-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1 border border-gray-100"
                   >
                     <service.icon
